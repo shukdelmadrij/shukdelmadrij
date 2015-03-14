@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>plg_system_autotweetautomator</name>
+	<creationDate>October 2009</creationDate>
+	
+    <author>Extly.com</author>
+	<authorEmail>support@extly.com</authorEmail>
+	<authorUrl>http://www.extly.com</authorUrl>
+	<copyright>Prieco S.A.</copyright>
+	<license>GNU/GPLv3 www.gnu.org/licenses/gpl-3.0.html</license>	
+	<version>7.5.0</version>
+	
+	<description>PLG_AUTOTWEETAUTOMATOR_DESC</description>
+	
+	<files>
+		<filename plugin="autotweetautomator">autotweetautomator.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_autotweetautomator.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_autotweetautomator.sys.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_system_autotweetautomator.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_system_autotweetautomator.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="general" label="PLG_AUTOTWEET_PARAM_GENERAL_LABEL" description="">
+				<field name="max_posts" type="list" default="1" label="PLG_AUTOTWEETAUTOMATOR_PARAM_MAXPOSTS_LABEL" description="PLG_AUTOTWEETAUTOMATOR_PARAM_MAXPOSTS_DESC">
+					<option value="1">1 (default)</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</field>
+				<field name="interval" type="text" default="180" label="PLG_AUTOTWEETAUTOMATOR_PARAM_INTERVAL_LABEL" description="PLG_AUTOTWEETAUTOMATOR_PARAM_INTERVAL_DESC" />
+			</fieldset>
+
+			<fieldset name="advanced" label="PLG_AUTOTWEET_PARAM_ADVANCED_LABEL" description="">
+				<field name="spacer1" type="spacer" default="" label ="PLG_AUTOTWEETAUTOMATOR_PARAM_ADVANCED_DESC" description="" />
+				
+				<field name="detect_bots" type="radio" class="btn-group" default="0" label="PLG_AUTOTWEETAUTOMATOR_PARAM_DETECTBOTS_LABEL" description="PLG_AUTOTWEETAUTOMATOR_PARAM_DETECTBOTS_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>					
+				</field>
+				
+				<field name="crawlers" type="text" default="" label="PLG_AUTOTWEETAUTOMATOR_PARAM_CRAWLERS_LABEL" description="PLG_AUTOTWEETAUTOMATOR_PARAM_CRAWLERS_DESC" />
+				<field name="blocked_ips" type="text" default="" label="PLG_AUTOTWEETAUTOMATOR_PARAM_BLOCKEDIPS_LABEL" description="PLG_AUTOTWEETAUTOMATOR_PARAM_BLOCKEDIPS_DESC"/>				
+			</fieldset>
+		</fields>
+	</config>
+	
+</extension>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+
+	<fieldset name="general" label="COM_AUTOTWEET_COMPARAM_GENERAL_LABEL" description="COM_AUTOTWEET_COMPARAM_GENERAL_DESC">
+		<field name="resend_attempts" type="list" default="2" label="COM_AUTOTWEET_COMPARAM_RESENDATTEMPTS_LABEL" description="COM_AUTOTWEET_COMPARAM_RESENDATTEMPTS_DESC">
+			<option value="1">1</option>
+			<option value="2">2 (default)</option>
+			<option value="3">3</option>
+		</field>
+ 
+		<field name="image_minx" type="text" default="100" label="COM_AUTOTWEET_COMPARAM_IMAGEMINX_LABEL" description="COM_AUTOTWEET_COMPARAM_IMAGEMINX_DESC" />
+		
+		<field name="image_miny" type="text" default="0" label="COM_AUTOTWEET_COMPARAM_IMAGEMINY_LABEL" description="COM_AUTOTWEET_COMPARAM_IMAGEMINY_DESC" />
+		 
+		<field name="spacer25" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_DEFAULTIMAGE_SPACER_LABEL" description="" />
+				
+		<field name="default_image" type="media" directory="stories" label="COM_AUTOTWEET_COMPARAM_DEFAULTIMAGE_LABEL" description="COM_AUTOTWEET_COMPARAM_DEFAULTIMAGE_DESC" />
+		
+		<field name="spacer26" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_USERINTERFACE_SPACER_LABEL" description="" />
+
+		<field name="allow_new_reqpost" type="radio" class="btn-group" default="0" label="COM_AUTOTWEET_COMPARAM_ALLOWNEWREQPOST_LABEL" description="COM_AUTOTWEET_COMPARAM_ALLOWNEWREQPOST_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>			
+	</fieldset>
+	
+	<fieldset name="liveupdate" label="CONFIG_LIVEUPDATE_HEADER_LABEL" description="CONFIG_LIVEUPDATE_HEADER_DESC">
+<!--	
+		<field name="update_dlid" type="text" default="" size="30"
+			label="CONFIG_DOWNLOADID_LABEL"
+			description ="CONFIG_DOWNLOADID_DESC" />
+-->			
+	    <field name="minstability" type="list" default="0"
+	           label="CONFIG_AUTOUPDATE_MINSTABILITY_LABEL"
+	           description="CONFIG_AUTOUPDATE_MINSTABILITY_DESC">
+	      <option value="0">CONFIG_AUTOUPDATE_MINSTABILITY_STABLE</option>
+	      <option value="1">CONFIG_AUTOUPDATE_MINSTABILITY_BETA</option>
+	    </field>	           
+
+		<field name="version_check" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_VERSIONCHECK_LABEL" description="COM_AUTOTWEET_COMPARAM_VERSIONCHECK_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>
+<!--
+	    <field name="autoupdateCli" type="list" default="1"
+	           label="CONFIG_AUTOUPDATE_SETTINGS_LABEL"
+	           description="CONFIG_AUTOUPDATE_SETTINGS_DESC">
+	      <option value="1">CONFIG_AUTOUPDATE_NOTIFY_UPDATE</option>
+	      <option value="2">CONFIG_AUTOUPDATE_NOTIFY</option>
+	      <option value="3">CONFIG_AUTOUPDATE_UPDATE</option>
+	    </field>
+
+ 	    <field name="notificationEmail" type="text" default=""
+	           label="CONFIG_NOTIFICATION_EMAIL_LABEL"
+	           description="CONFIG_NOTIFICATION_EMAIL_DESC"/>
+ 
+	    <field name="notificationFreq" type="text" default="1"
+	           label="CONFIG_NOTIFICATION_FREQ_LABEL" />
+
+	    <field name="notificationTime" type="list" default="day"
+	           label="CONFIG_NOTIFICATION_TIME_LABEL" >
+	      <option value="min">CONFIG_NOTIFICATION_TIME_MIN</option>
+	      <option value="hour">CONFIG_NOTIFICATION_TIME_HOUR</option>
+	      <option value="day">CONFIG_NOTIFICATION_TIME_DAY</option>
+	    </field>
+ -->
+	</fieldset>		
+	
+	<fieldset name="shorturl" label="COM_AUTOTWEET_COMPARAM_SHORTURL_LABEL" description="COM_AUTOTWEET_COMPARAM_SHORTURL_DESC">
+		<field name="shorturl_always" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_SHORTURLALWAYS_LABEL" description="COM_AUTOTWEET_COMPARAM_SHORTURLALWAYS_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>
+		<field name="shorturl_service" type="list" default="Tinyurlcom" label="COM_AUTOTWEET_COMPARAM_SHORTURLSERVICE_LABEL" description="COM_AUTOTWEET_COMPARAM_SHORTURLSERVICE_DESC">
+			<option value="Tinyurlcom">tinyurl.com (default)</option>
+			<option value="0">JDISABLED</option>
+		</field>
+	</fieldset>
+
+	<fieldset name="feeds" label="COM_AUTOTWEET_COMPARAM_FEEDS_LABEL" description="COM_AUTOTWEET_COMPARAM_FEEDS_DESC">
+		<field name="feeds_enabled" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_FEEDS_ENABLED_LABEL" description="COM_AUTOTWEET_COMPARAM_FEEDS_ENABLED_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>
+		 
+		<field name="img_check" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_IMAGE_CHECK_LABEL" description="COM_AUTOTWEET_COMPARAM_IMAGE_CHECK_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>
+		
+		<field name="blocked_images" type="text" default="" label="COM_AUTOTWEET_COMPARAM_BLOCK_IMAGES_LABEL" description="COM_AUTOTWEET_COMPARAM_BLOCK_IMAGES_DESC"/>
+		
+		<field name="use_sp_cache" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_SP_CACHE_LABEL" description="COM_AUTOTWEET_COMPARAM_SP_CACHE_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>
+		
+		<field name="set_sp_timeout" type="text" default="10" label="COM_AUTOTWEET_COMPARAM_SP_TIMEOUT_LABEL" description="COM_AUTOTWEET_COMPARAM_SP_TIMEOUT_DESC" />
+		
+		<field name="ajax_import" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_AJAX_IMPORT_LABEL" description="COM_AUTOTWEET_COMPARAM_AJAX_IMPORT_DESC" >
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>		
+	</fieldset>
+	
+	<fieldset name="system" label="COM_AUTOTWEET_COMPARAM_SYSTEM_LABEL" description="COM_AUTOTWEET_COMPARAM_SYSTEM_DESC">
+		<field name="admin_notification" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_ADMINNOTIFICATION_LABEL" description="COM_AUTOTWEET_COMPARAM_ADMINNOTIFICATION_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>
+		 
+		<field name="spacer11" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_LOGDEBUG_SPACER_LABEL" description="" />
+				
+		<field name="log_level" type="list" default="8" label="COM_AUTOTWEET_COMPARAM_LOGLEVEL_LABEL" description="COM_AUTOTWEET_COMPARAM_LOGLEVEL_DESC">
+			<option value="0">COM_AUTOTWEET_COMPARAM_LOGLEVEL_OFF_0</option>
+			<option value="8">COM_AUTOTWEET_COMPARAM_LOGLEVEL_ERROR_1</option>
+			<option value="16">COM_AUTOTWEET_COMPARAM_LOGLEVEL_WARN_2</option>
+			<option value="64">COM_AUTOTWEET_COMPARAM_LOGLEVEL_ALL_3</option>			
+		</field>
+		<field name="log_mode" type="list" default="2" label="COM_AUTOTWEET_COMPARAM_LOGMODE_LABEL" description="COM_AUTOTWEET_COMPARAM_LOGMODE_DESC">
+			<option value="0">COM_AUTOTWEET_COMPARAM_LOGMODE_FILE_0</option>
+			<option value="1">COM_AUTOTWEET_COMPARAM_LOGMODE_FILESCR_1</option>	
+			<option value="2">COM_AUTOTWEET_COMPARAM_LOGMODE_SCR_2</option>		
+		</field>				
+	</fieldset>	
+	
+	<fieldset name="advanced" label="COM_AUTOTWEET_COMPARAM_DATABASECLEANUP_ADVANCED_LABEL" description="COM_AUTOTWEET_COMPARAM_DATABASECLEANUP_ADVANCED_DESC">
+		<field name="spacer13" type="spacer" default="" label ="COM_AUTOTWEET_COMPARAM_DPCHECK_SPACER_LABEL" description="" />
+				
+		<field name="dpcheck_enabled" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_DPCHECKENABLED_LABEL" description="COM_AUTOTWEET_COMPARAM_DPCHECKENABLED_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>
+		<field name="dpcheck_time_intval" type="text" default="12" label="COM_AUTOTWEET_COMPARAM_DPCHECKTIMEINTVAL_LABEL" description="COM_AUTOTWEET_COMPARAM_DPCHECKTIMEINTVAL_DESC" />
+		 
+		<field name="spacer19" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_URLOVERWRITE_SPACER_LABEL" description="" />
+				
+		<field name="base_url" type="text" default="" label="COM_AUTOTWEET_COMPARAM_BASEURL_LABEL" description="COM_AUTOTWEET_COMPARAM_BASEURL_DESC" />
+		 
+		<field name="spacer22" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_URLROUTING_SPACER_LABEL" description="" />
+				
+		<field name="routing_mode" type="list" default="0" label="COM_AUTOTWEET_COMPARAM_URLROUTINGMODE_LABEL" description="COM_AUTOTWEET_COMPARAM_URLROUTINGMODE_DESC">
+			<option value="0">COM_AUTOTWEET_COMPARAM_URLROUTINGMODE_OPTION_0</option>
+			<option value="1">COM_AUTOTWEET_COMPARAM_URLROUTINGMODE_OPTION_1</option>			
+			<option value="2">COM_AUTOTWEET_COMPARAM_URLROUTINGMODE_OPTION_2</option>
+		</field>		
+		
+		<field name="urlrouting_enabled" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_URLROUTINGENABLED_LABEL" description="COM_AUTOTWEET_COMPARAM_URLROUTINGENABLED_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>
+		
+		<field name="validate_url" type="radio" class="btn-group" default="1" label="COM_AUTOTWEET_COMPARAM_VALIDATE_URL_LABEL" description="COM_AUTOTWEET_COMPARAM_VALIDATE_URL_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>		
+		 
+		<field name="spacer16" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_LANGMGMT_SPACER_LABEL" description="" />
+				
+		<field name="langmgmt_enabled" type="list" default="0" label="COM_AUTOTWEET_COMPARAM_LANGMGMTENABLED_LABEL" description="COM_AUTOTWEET_COMPARAM_LANGMGMTENABLED_DESC">
+			<option value="0">JDISABLED</option>
+			<option value="1">COM_AUTOTWEET_COMPARAM_LANGMGMTENABLED_OPTION_1</option>
+			<option value="2">COM_AUTOTWEET_COMPARAM_LANGMGMTENABLED_OPTION_2</option>
+		</field>
+		<field name="langmgmt_default_language" type="contentlanguage" client="site" default="en-GB" label="COM_AUTOTWEET_COMPARAM_LANGMGMTDEFAULTLANGUAGE_LABEL" description="COM_AUTOTWEET_COMPARAM_LANGMGMTDEFAULTLANGUAGE_DESC" />
+		
+		<field name="spacer18" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_TWWEIGTH_LABEL" description="COM_AUTOTWEET_COMPARAM_TWWEIGTH_DESC" />
+		
+		<field name="url_weight" type="text" default="23" label="COM_AUTOTWEET_COMPARAM_URLWEIGTH_LABEL" description="COM_AUTOTWEET_COMPARAM_URLWEIGTH_DESC" />
+		
+		<field name="media_weight" type="text" default="24" label="COM_AUTOTWEET_COMPARAM_MEDIAWEIGTH_LABEL" description="COM_AUTOTWEET_COMPARAM_MEDIAWEIGTH_DESC" />
+		
+		<field name="spacer17" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_RULES_MODE_LABEL" description="" />
+		
+		<field name="denyall_rulemode" type="radio" class="btn-group" default="0" label="COM_AUTOTWEET_COMPARAM_DENYALL_LABEL" description="COM_AUTOTWEET_COMPARAM_DENYALL_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>
+		
+		<field name="spacer20" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_POLLING_LABEL" description="" />		
+		
+		<field name="polling_window_intval" type="text" default="24" label="COM_AUTOTWEET_COMPARAM_POLLINGWININTVAL_LABEL" description="COM_AUTOTWEET_COMPARAM_POLLINGWININTVAL_DESC" />
+			
+		<field name="mincheck_time_intval" type="text" default="60" label="COM_AUTOTWEET_COMPARAM_MINCHECKTIMEINTVAL_LABEL" description="COM_AUTOTWEET_COMPARAM_MINCHECKTIMEINTVAL_DESC" />
+		
+		<field name="spacer21" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_CHANNELDEBUG_LABEL" description="" />
+		
+		<field name="donot_fberror02" type="radio" class="btn-group" default="0" label="COM_AUTOTWEET_COMPARAM_FBERROR02_LABEL" description="COM_AUTOTWEET_COMPARAM_FBERROR02_DESC">
+			<option value="1">JYES</option>
+            <option value="0">JNO</option>
+		</field>	
+		
+		<field name="spacer23" type="spacer" default="" label="COM_AUTOTWEET_COMPARAM_SPAMCHECK_LABEL" description="" />
+		<field name="banned_words" type="textarea" default="" rows="10" cols="40" label="COM_AUTOTWEET_BANNEDWORDS_LABEL" description="COM_AUTOTWEET_BANNEDWORDS_DESC"/>		
+		
+	</fieldset>
+	
+	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			validate="rules"
+			filter="rules"
+			component="com_autotweet"
+			section="component" />
+	</fieldset>
+	
+</config>

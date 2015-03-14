@@ -1,0 +1,1 @@
+UPDATE `#__autotweet_channeltypes` SET `auth_url` = 'http://apps.facebook.com/autotweetng_sixfive/index.php' WHERE `name` LIKE 'Faceboo%'; 

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0" method="upgrade">
+	<name>com_autotweet</name>
+	<creationDate>June 2009</creationDate>
+	
+	<author>Extly.com</author>
+	<authorEmail>support@extly.com</authorEmail>
+	<authorUrl>http://www.extly.com</authorUrl>	
+	<copyright>Copyright (C) 2007 - 2014 Prieco, S.A. All rights reserved.</copyright>
+	<license>GNU/GPLv3 www.gnu.org/licenses/gpl-3.0.html</license>
+	
+	<version>7.5.0</version>
+	<description>AutoTweetNG posts content to social channels (Twitter, Facebook, LinkedIn, etc).</description>
+
+	<!-- Public front end files -->
+	<files folder="frontend">
+		<folder>controllers</folder>
+		<folder>views</folder>		
+		<filename>autotweet.php</filename>
+		<filename>dispatcher.php</filename>
+		<filename>index.html</filename>
+	</files>
+
+	<!-- Front end translation files -->
+	<languages folder="language/frontend">
+		<language tag="en-GB">en-GB/en-GB.autotweet_cli.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_autotweet.ini</language>
+	</languages>
+
+	<!-- SQL query files to execute on installation -->
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">sql/install/mysql/install.sql</file>
+			<file driver="mysql">sql/install/mysql/install.sql</file>
+			<file charset="utf8" driver="mysqli">sql/install/mysql/install.sql</file>
+			<file driver="mysqli">sql/install/mysql/install.sql</file>
+		</sql>
+	</install>
+
+	<!-- SQL query files to execute on uninstallation -->
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">sql/install/mysql/uninstall.sql</file>
+			<file driver="mysql">sql/install/mysql/uninstall.sql</file>
+			<file charset="utf8" driver="mysqli">sql/install/mysql/uninstall.sql</file>
+			<file driver="mysqli">sql/install/mysql/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	
+	<!-- SQL files to run on update -->
+	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+	
+	<!-- Media files -->
+	<media destination="com_autotweet" folder="media">
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
+
+	<!-- Administrator back-end section -->
+	<administration>
+		<menu view="cpanel" img="../media/com_autotweet/images/autotweet-icon.png">COM_AUTOTWEET_NAME</menu>
+		
+		<submenu>
+			<menu link="option=com_autotweet&amp;view=composer" img="../media/com_autotweet/images/menuj25/pencil-square.png">COM_AUTOTWEET_TITLE_COMPOSERS</menu>
+			<menu link="option=com_autotweet&amp;view=requests" img="../media/com_autotweet/images/menuj25/calendar.png">COM_AUTOTWEET_TITLE_REQUESTS</menu>
+			<menu link="option=com_autotweet&amp;view=rules" img="../media/com_autotweet/images/menuj25/random.png">COM_AUTOTWEET_TITLE_RULES</menu>					
+			<menu link="option=com_autotweet&amp;view=posts" img="../media/com_autotweet/images/menuj25/tasks.png">COM_AUTOTWEET_TITLE_POSTS</menu>
+			<menu link="option=com_autotweet&amp;view=channels" img="../media/com_autotweet/images/menuj25/bullhorn.png">COM_AUTOTWEET_TITLE_CHANNELS</menu>
+			<menu link="option=com_autotweet&amp;view=feeds" img="../media/com_autotweet/images/menuj25/rss.png">COM_AUTOTWEET_TITLE_FEEDS</menu>
+			<menu link="option=com_autotweet&amp;view=infos" img="../media/com_autotweet/images/menuj25/info.png">COM_AUTOTWEET_TITLE_INFOS</menu>
+		</submenu>
+
+		<!-- Back-end files -->
+		<files folder="backend">
+			<folder>api</folder>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>libs</folder>
+			<folder>models</folder>
+			<folder>sql</folder>			
+			<folder>tables</folder>
+			<folder>views</folder>
+
+			<filename>access.xml</filename>
+			<filename>autotweet.php</filename>
+			<filename>config.xml</filename>
+			<filename>dispatcher.php</filename>
+			<filename>fof.xml</filename>
+			<filename>index.html</filename>
+			<filename>toolbar.php</filename>
+		</files>
+
+		<!-- Back-end translation files -->
+		<languages folder="language/backend">
+		
+			<language tag="en-GB">en-GB/en-GB.com_autotweet.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_autotweet.sys.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_autotweet.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_autotweet.sys.ini</language>
+		
+		</languages>
+	</administration>
+	
+	<!-- Installation / uninstallation script file -->
+	<scriptfile>script.autotweet.php</scriptfile>
+	
+	<!-- Update servers -->
+	<updateservers>
+		<server type="extension" priority="1" name="AutoTweetNG Free">http://cdn.extly.com/update-autotweetng-free</server>
+	</updateservers>	
+
+</extension>

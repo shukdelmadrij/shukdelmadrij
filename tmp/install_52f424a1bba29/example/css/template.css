@@ -1,0 +1,232 @@
+/*Joomla 1.5 example template design, Jim Yuzwalk 2010-03-16*/
+body{
+margin: 0;
+padding: 0;
+font-size: 1em;
+font-family: Helvetica,Arial,sans-serif; }
+
+#Banner{
+height: 118px; /*banner height*/
+background-color: black;
+background-image: url("../images/banner.png");
+background-repeat: no-repeat;
+/*border: 2px dotted blue;*/ }
+#Top{ /*Top display area that will hold the pull down menu and search modules*/
+height: 28px; /*top area height*/
+background-color: #A88147;
+border: 1px solid #F5A467; }
+#Main{ /*Main display area*/
+/*float: left;*/
+clear: both;
+/*border: 2px dotted yellow; */ }
+#Footer{ /*Footer display area*/
+clear: both;
+font-size: 1em;
+text-align: center;
+border-top: 2px solid #ccc;
+/*border: 2px dotted red;*/ }
+
+#TopLeft { /*top left -- Drop down menu*/
+float: left;
+/*border: 1px solid #F5A467;*/
+background-color: #A88147;
+list-style-type: none;
+text-decoration: none;
+font-family:arial;
+font-size: 14px;
+text-align:left;
+}
+#TopLeft A {
+color: white;
+text-decoration: none;
+}
+#TopRight{ /*top right -- search box*/
+float: right;
+padding-top: .2em;
+padding-right: 1em;
+/*margin-left: 18em;*/
+background-color: #A88147; 
+/*border: 1px dashed silver;*/ }
+
+#MainLeft{ /*left side -- menu and breadcrumbs*/
+float: left; width: 17em;
+/*border: 1px dashed black;*/ }
+#MainRight{ /*right side -- content*/
+margin-left: 17em; /*very important that this matches width in MainLeft -- gives stable behavior during window resizing in IE6 and FireFox 3.6*/
+padding: 0 1em;
+border-left: 2px solid #ccc;
+min-height: 800px;
+/*border: 1px dashed silver;*/ }
+
+
+#MainLeft ul{
+margin: 0em;
+padding-left: 1.5em;
+padding-top: 1em;
+}
+#MainLeft ul ul{
+padding-top: 0em;
+}
+#MainLeft span.breadcrumbs {
+display: block;
+margin-top: 1em;
+padding-left: .5em;
+font-size: 90%;
+font-family:arial;
+}
+
+.nav {
+line-height: 1.0;
+margin-bottom: 1.5em;
+position: relative;
+}
+
+.nav ul {
+/*background color of drop down list */
+background: white;
+padding: 0;
+}
+
+.nav li {
+list-style: none;
+position: relative; /*float the pull down relative to the menu's root text*/
+background: none;
+}
+
+.nav li li {
+/*drop down list width that shows background color */
+width: 24.1em;
+}
+
+.nav li li a {
+/*drop down list text area width */
+display: block;
+padding: 0;
+text-decoration: none;
+background-image: none;
+width: 24em;
+}
+
+.nav li ul {
+/*border around entire drop down area */
+left: -999em;
+position: absolute;
+width: 24.1em;
+z-index: 5; /* place element 5 units in front */
+border: 1px solid #232323;
+}
+
+.nav li ul li span {
+/*drop down text area bottom border */
+border-bottom: 1px solid #A88147;
+/*background-color: #F5A467;*/
+}
+
+.nav li ul li span.top A {
+/*drop down text area background color */
+background-color: #F5A467;
+}
+
+.nav li:hover ul,
+.nav li.sfHover ul {
+left: 0px;
+top: 28px;
+}
+
+
+
+#navFish {
+/*modified positioning to absolute*/
+left: 0em;
+position: absolute;
+z-index: 50;
+}
+
+#navFish ul {
+list-style: none;
+margin: 0;
+padding: 0 0 0 0px;
+}
+
+#navFish li {
+background-color: #A88147;
+display: block;
+float: left;
+margin: 0;
+margin-right: 0px;
+padding: 0;
+}
+
+#navFish li span {
+display: block;
+float: left;
+}
+
+#navFish a {
+display: block;
+float: left;
+height: 28px;
+line-height: 28px;
+padding: 0 15px;
+font-weight: normal;
+}
+
+#navFish li li a {
+font-size: 12px;
+padding: 0 15px;
+/*drop down text area font color */
+color:black;
+}
+
+#navFish li:hover,
+#navFish li.sfHover {
+background: none;	
+}
+
+
+img {
+/* Internet Explorer doesn't use bicubic interpolation by default so enable it to eliminate image jaggies*/
+-ms-interpolation-mode: bicubic;
+/*Allows IE7 to shrink images when browser window size is made smaller*/
+max-width: 100%;
+}
+
+
+/*Simple formatting for all pages*/
+a {
+color: black;
+text-decoration: none;
+}
+
+h1 {
+color:black;
+text-align: center;
+font-size: 180%;
+text-transform: uppercase;
+font-family:arial;
+}
+
+h2 {
+color:black;
+text-align: left;
+font-size: 130%;
+/*text-transform: uppercase; */
+font-family:arial;
+}
+
+h3 {
+color:black;
+text-align: left;
+font-size: 130%;
+/*text-transform: uppercase; */
+font-family:arial;
+}
+
+p {
+color:black;
+text-align: left;
+font-size: 100%;
+/*text-transform: uppercase; */
+font-family:arial;
+}
+

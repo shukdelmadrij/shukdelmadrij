@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.5" type="plugin" group="content" method="upgrade">
+	<name>Content - Facebook-Twitter-Google+1</name>
+	<author>Compago</author>
+	<creationDate>Feb 2014</creationDate>
+	<copyright>Copyright (C) 2013 Compago TLC. All rights reserved.
+	</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>compagotlc@gmail.com</authorEmail>
+	<authorUrl>www.compago.it</authorUrl>
+	<version>3.2</version>
+	<description> <![CDATA[<p style="text-align:left;">Facebook+Twitter+GooglePlusOne Plugin for Joomla enable the Facebook comments and the share buttons for Pinterest, Twitter, Google +1 and Facebook on your published articles.</p>
+  <p>If you need some configuration details visit <a target='_blank' href='http://www.compago.it/software/41-compago-software/347-facebook-twitter-google1-plugin-for-joomla.html'>Facebook - Twitter - Google+1 plugin for Joomla</a></p>
+ <br /><p>Like the plugin? Please <a target='_blank' href='http://extensions.joomla.org/extensions/social-web/social-share/social-multi-share/18072'>Rate it! </a>Thank you!</p>]]></description>
+	<files>
+		<filename plugin="fb_tw_plus1">fb_tw_plus1.php</filename>
+		<filename>index.html</filename>
+		<filename>media/index.html</filename>
+		<filename>media/linkcmp.png</filename>
+		<filename>media/fbcmp.png</filename>
+		<filename>media/fbicon.png</filename>
+		<filename>media/twittericon.png</filename>
+		<filename>media/googleicon.png</filename>
+		<filename>media/linkedinicon.png</filename>
+		<filename>media/pinteresticon.png</filename>
+		<filename>twitteroauth/OAuth.php</filename>
+		<filename>twitteroauth/twitteroauth.php</filename>
+		<filename>twitteroauth/index.html</filename>
+		<filename>facebook/fbextraparams.php</filename>
+		<filename>facebook/base_facebook.php</filename>
+		<filename>facebook/facebook.php</filename>
+		<filename>facebook/fb_ca_chain_bundle.crt</filename>
+		<filename>facebook/notify.php</filename>
+		<filename>facebook/index.html</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="general" type="spacer" default="General Plugin Settings"
+					label="&lt;b&gt;Plugin Settings&lt;/b&gt;" description="General Plugin Settings" />
+				<field name="enable_fb_like" type="radio" class="radio btn-group"
+					default="1" label="Enable FB Like Button" description="Enable Facebook Like Button">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_fb_share" type="radio" class="radio btn-group"
+					default="0" label="Enable FB Share Button" description="Enable Facebook Share Button">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_fb_send" type="radio" class="radio btn-group"
+					default="0" label="Enable FB Send Button" description="Enable Facebook Send Button">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_fb_comments" type="radio" class="radio btn-group"
+					default="0" label="Enable FB Comments Box" description="Enable Facebook Comments Box">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_fb_photo" type="radio" class="radio btn-group"
+					default="0" label="Enable FB Photo Button"
+					description="Enable the Facebook Photo Share Button. To enable it you must set up a Facebook application.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_twitter" type="radio" class="radio btn-group"
+					default="0" label="Enable Twitter Button" description="Enable Twitter Button">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_google" type="radio" class="radio btn-group"
+					default="0" label="Enable Google+1 Button" description="Enable Google +1 Button">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_google_share" type="radio" class="radio btn-group"
+					default="0" label="Enable Google Share Button" description="Enable Google Share Button">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_linkedin" type="radio" class="radio btn-group"
+					default="0" label="Enable LinkedIn Button" description="Enable LinkedIn Share Button">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_pinterest" type="radio" class="radio btn-group"
+					default="0" label="Enable Pinterest Button" description="Enable Pinterest Button">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field name="weight_fb_like" type="text" default="1"
+					label="Weight FB Like Button" description="Give weight for Facebook Like Button position" />
+				<field name="weight_fb_share" type="text" default="2"
+					label="Weight FB Share Button" description="Give weight for Facebook Share Button position" />
+				<field name="weight_fb_send" type="text" default="3"
+					label="Weight FB Send Button" description="Give weight for Facebook Send Button position" />
+				<field name="weight_twitter" type="text" default="4"
+					label="Weight Twitter Button" description="Give weight for Twitter Button position" />
+				<field name="weight_google" type="text" default="5"
+					label="Weight Google+1 Button" description="Give weight for Google +1 Button position" />
+				<field name="weight_google_share" type="text" default="6"
+					label="Weight Google Share Button" description="Give weight for Google Share Button position" />
+				<field name="weight_linkedin" type="text" default="7"
+					label="Weight LinkedIn Button" description="Give weight for LinkedIn Share Button position" />
+				<field name="weight_pinterest" type="text" default="8"
+					label="Weight Pinterest Button" description="Give weight for Pinterest Button position" />
+
+				<field name="ignore_pagination" type="radio" class="radio btn-group"
+					default="0" label="Ignore Pagination"
+					description="Put the social plugins only at the begin or the end of the article or in every page of the article">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="auto_language" type="radio" class="radio btn-group"
+					default="0" label="Auto Language" description="Choose the language automatically">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="css_code" type="textarea"
+					default=".fb_iframe_widget {max-width: none;} .fb_iframe_widget_lift  {max-width: none;}" label="Css Styles" description="Direct css style code.">
+				</field>
+
+				<field type="spacer" />
+				<field name="general_buttons_settings" type="spacer" default="Buttons Settings"
+					label="&lt;b&gt;Social Buttons Settings&lt;/b&gt;" description="Social Share Buttons Settings" />
+				<field name="content_tobe_excluded_buttons" type="text"
+					default="" label="Excluded Content" description="Type in Content (Article) Id to be excluded with comma" />
+				<field name="category_tobe_excluded_buttons" type="category" extension="com_content" default="" label="Excluded Categories"
+					description="Multiple select the categories that must not use the plugins buttons" multiple="true" size="5" />
+
+				<field name="container_buttons" type="list" default="div"
+					label="Container" description="Choose the tag container for the buttons">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="ul">UL</option>
+				</field>
+				<field name="css_buttons" type="text"
+					default="min-height:40px;display: inline-block;width: 100&#37;;" label="CSS style"
+					description="Insert a style for the buttons container" />
+				<field name="view_article_buttons" type="radio" class="radio btn-group"
+					default="1" label="Enable on Article view" description="Enable social share buttons on Article view">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="view_frontpage_buttons" type="radio" class="radio btn-group"
+					default="0" label="Enable on FrontPage view" description="Enable social share buttons on FrontPage view">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="view_category_buttons" type="radio" class="radio btn-group"
+					default="0" label="Enable on Category view" description="Enable social share buttons on Category view">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="view_virtuemart_buttons" type="radio" class="radio btn-group"
+					default="0" label="Enable on Virtuemart view"
+					description="Enable social share buttons on Virtuemart articles">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field name="Position_fb_like" type="radio" default="1"
+					label="FB Like Position" description="Choose the position where to render the fb like button.">
+					<option value="0">Before Content</option>
+					<option value="1">After Content</option>
+					<option value="2">Both</option>
+				</field>
+				<field name="Position_fb_share" type="radio" default="1"
+					label="FB Share Position" description="Choose the position where to render the fb share button.">
+					<option value="0">Before Content</option>
+					<option value="1">After Content</option>
+					<option value="2">Both</option>
+				</field>
+				<field name="Position_fb_send" type="radio" default="1"
+					label="FB Send Position" description="Choose the position where to render the fb send button.">
+					<option value="0">Before Content</option>
+					<option value="1">After Content</option>
+					<option value="2">Both</option>
+				</field>
+				<field name="Position_twitter" type="radio" default="1"
+					label="Twitter Position" description="Choose the position where to render the Twitter button.">
+					<option value="0">Before Content</option>
+					<option value="1">After Content</option>
+					<option value="2">Both</option>
+				</field>
+				<field name="Position_google" type="radio" default="1"
+					label="Google+1 Position" description="Choose the position where to render the Google+1 button.">
+					<option value="0">Before Content</option>
+					<option value="1">After Content</option>
+					<option value="2">Both</option>
+				</field>
+				<field name="Position_google_share" type="radio" default="1"
+					label="Google Share Position"
+					description="Choose the position where to render the Google Share button.">
+					<option value="0">Before Content</option>
+					<option value="1">After Content</option>
+					<option value="2">Both</option>
+				</field>
+				<field name="Position_pinterest" type="radio" default="1"
+					label="Pinterest Position" description="Choose the position where to render the Pinterest button.">
+					<option value="0">Before Content</option>
+					<option value="1">After Content</option>
+					<option value="2">Both</option>
+				</field>
+				<field name="Position_linkedin" type="radio" default="1"
+					label="LinkedIn Position" description="Choose the position where to render the LinkedIn button.">
+					<option value="0">Before Content</option>
+					<option value="1">After Content</option>
+					<option value="2">Both</option>
+				</field>
+
+				<field type="spacer" />
+				<field name="general_comments_settings" type="spacer" default="Facebook Comments Box settings" 
+					label="&lt;b&gt;Facebook Comments Box settings&lt;/b&gt;" description="Settings For Facebook Comments Box" />
+				<field name="content_tobe_excluded_comments" type="text"
+					default="" label="Excluded Content" description="Type in Content (Article) Id to be excluded with comma" />
+				<field name="category_tobe_excluded_comments" type="category" extension="com_content" default="" 
+					label="Excluded Categories" description="Multiple select the categories that must not use the comment box plugin" multiple="true" size="5" />
+				<field name="fb_comments_width" type="text" default="450"
+					label="Width" description="The width of comments box, in pixels" />
+				<field name="fb_comments_autofit" type="radio" class="radio btn-group"
+					default="0" label="Autofit" description="Change the width of the comment box to the container">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="fb_comments_max_number" type="text" default="10"
+					label="Number visible posts" description="The number of comments to show" />
+				<field name="fb_comments_color_scheme" type="list" default="light"
+					label="Comments box colors scheme" description="Comments box colors scheme">
+					<option value="light">light</option>
+					<option value="dark">dark</option>
+				</field>
+				<field name="fb_comments_container" type="list" default="div"
+					label="Container" description="Choose the tag container for the button">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="li">LI</option>
+				</field>
+				<field name="fb_comments_css" type="text" default="border-top-style:solid;border-top-width:1px;padding:10px;text-align:center;"
+					label="CSS style" description="Insert a style for the comment box container" />
+				<field name="view_article_comments" type="radio" class="radio btn-group"
+					default="1" label="Enable on Article view" description="Enable FB comments on Article view">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="view_frontpage_comments" type="radio" class="radio btn-group"
+					default="0" label="Enable on FrontPage view" description="Enable FB comments on FrontPage view">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="view_category_comments" type="radio" class="radio btn-group"
+					default="0" label="Enable on Category view" description="Enable FB comments on Category view">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="view_virtuemart_comments" type="radio" class="radio btn-group"
+					default="0" label="Enable on Virtuemart view" description="Enable FB comments on Virtuemart articles">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field name="advanced_fb_settings" type="spacer" default="Setting For Facebook"
+					label="&lt;b&gt;Setting For Facebook Plugins&lt;/b&gt;" description="Setting For Facebook Plugins" />
+				<field name="fb_mode" type="radio" default="xfbml" label="Mode" description="Choose the implementaton mode of the fb plugins code">
+					<option value="html5">HTML5</option>
+					<option value="xfbml">XFBML</option>
+				</field>
+				<field name="fb_language" type="list" default="en_US"
+					label="Select a language code" description="Set the language for the like and send button">
+					<option value="ca_ES">Catalan</option>
+					<option value="cs_CZ">Czech</option>
+					<option value="cy_GB">Welsh</option>
+					<option value="da_DK">Danish</option>
+					<option value="de_DE">German</option>
+					<option value="eu_ES">Basque</option>
+					<option value="en_PI">English (Pirate)</option>
+					<option value="en_UD">English (Upside Down)</option>
+					<option value="ck_US">Cherokee</option>
+					<option value="en_US">English (US)</option>
+					<option value="es_LA">Spanish</option>
+					<option value="es_CL">Spanish (Chile)</option>
+					<option value="es_CO">Spanish (Colombia)</option>
+					<option value="es_ES">Spanish (Spain)</option>
+					<option value="es_MX">Spanish (Mexico)</option>
+					<option value="es_VE">Spanish (Venezuela)</option>
+					<option value="fb_FI">Finnish (test)</option>
+					<option value="fi_FI">Finnish</option>
+					<option value="fr_FR">French (France)</option>
+					<option value="gl_ES">Galician</option>
+					<option value="hu_HU">Hungarian</option>
+					<option value="it_IT">Italian</option>
+					<option value="ja_JP">Japanese</option>
+					<option value="ko_KR">Korean</option>
+					<option value="nb_NO">Norwegian (bokmal)</option>
+					<option value="nn_NO">Norwegian (nynorsk)</option>
+					<option value="nl_NL">Dutch</option>
+					<option value="pl_PL">Polish</option>
+					<option value="pt_BR">Portuguese (Brazil)</option>
+					<option value="pt_PT">Portuguese (Portugal)</option>
+					<option value="ro_RO">Romanian</option>
+					<option value="ru_RU">Russian</option>
+					<option value="sk_SK">Slovak</option>
+					<option value="sl_SI">Slovenian</option>
+					<option value="sv_SE">Swedish</option>
+					<option value="th_TH">Thai</option>
+					<option value="tr_TR">Turkish</option>
+					<option value="ku_TR">Kurdish</option>
+					<option value="zh_CN">Simplified Chinese (China)</option>
+					<option value="zh_HK">Traditional Chinese (Hong Kong)</option>
+					<option value="zh_TW">Traditional Chinese (Taiwan)</option>
+					<option value="fb_LT">Leet Speak</option>
+					<option value="af_ZA">Afrikaans</option>
+					<option value="sq_AL">Albanian</option>
+					<option value="hy_AM">Armenian</option>
+					<option value="az_AZ">Azeri</option>
+					<option value="be_BY">Belarusian</option>
+					<option value="bn_IN">Bengali</option>
+					<option value="bs_BA">Bosnian</option>
+					<option value="bg_BG">Bulgarian</option>
+					<option value="hr_HR">Croatian</option>
+					<option value="nl_BE">Dutch (Belgium)</option>
+					<option value="en_GB">English (UK)</option>
+					<option value="eo_EO">Esperanto</option>
+					<option value="et_EE">Estonian</option>
+					<option value="fo_FO">Faroese</option>
+					<option value="fr_CA">French (Canada)</option>
+					<option value="ka_GE">Georgian</option>
+					<option value="el_GR">Greek</option>
+					<option value="gu_IN">Gujarati</option>
+					<option value="hi_IN">Hindi</option>
+					<option value="is_IS">Icelandic</option>
+					<option value="id_ID">Indonesian</option>
+					<option value="ga_IE">Irish</option>
+					<option value="jv_ID">Javanese</option>
+					<option value="kn_IN">Kannada</option>
+					<option value="kk_KZ">Kazakh</option>
+					<option value="la_VA">Latin</option>
+					<option value="lv_LV">Latvian</option>
+					<option value="li_NL">Limburgish</option>
+					<option value="lt_LT">Lithuanian</option>
+					<option value="mk_MK">Macedonian</option>
+					<option value="mg_MG">Malagasy</option>
+					<option value="ms_MY">Malay</option>
+					<option value="mt_MT">Maltese</option>
+					<option value="mr_IN">Marathi</option>
+					<option value="mn_MN">Mongolian</option>
+					<option value="ne_NP">Nepali</option>
+					<option value="pa_IN">Punjabi</option>
+					<option value="rm_CH">Romansh</option>
+					<option value="sa_IN">Sanskrit</option>
+					<option value="sr_RS">Serbian</option>
+					<option value="so_SO">Somali</option>
+					<option value="sw_KE">Swahili</option>
+					<option value="tl_PH">Filipino</option>
+					<option value="ta_IN">Tamil</option>
+					<option value="tt_RU">Tatar</option>
+					<option value="te_IN">Telugu</option>
+					<option value="ml_IN">Malayalam</option>
+					<option value="uk_UA">Ukrainian</option>
+					<option value="uz_UZ">Uzbek</option>
+					<option value="vi_VN">Vietnamese</option>
+					<option value="xh_ZA">Xhosa</option>
+					<option value="zu_ZA">Zulu</option>
+					<option value="km_KH">Khmer</option>
+					<option value="tg_TJ">Tajik</option>
+					<option value="ar_AR">Arabic</option>
+					<option value="he_IL">Hebrew</option>
+					<option value="ur_PK">Urdu</option>
+					<option value="fa_IR">Persian</option>
+					<option value="sy_SY">Syriac</option>
+					<option value="yi_DE">Yiddish</option>
+					<option value="gn_PY">Guarani</option>
+					<option value="qu_PE">Quechua</option>
+					<option value="ay_BO">Aymara</option>
+					<option value="se_NO">Northern Sami</option>
+					<option value="ps_AF">Pashto</option>
+					<option value="tl_ST">Klingon</option>
+				</field>
+				<field name="fb_asynchronous" type="radio" class="radio btn-group"
+					default="0" label="Asynchronous" description="Enable Asynchronous load for Facebook plugins.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="kid_directed_site" type="radio" class="radio btn-group"
+					default="0" label="Kid directed site"
+					description="If your web site or online service, or a portion of your service, is directed to children under 13 you must enable this.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field type="spacer" />
+				<field name="advanced_fb_like" type="spacer" default="Setting For Facebook Like Button" 
+					label="&lt;b&gt;Setting For Facebook Like Button&lt;/b&gt;" description="Setting For Facebook Like Button" />
+				<field name="fb_like_layout" type="list" default="button_count"
+					label="Style" description="Style of the button to be displayed">
+					<option value="standard">standard</option>
+					<option value="button_count">button_count</option>
+					<option value="box_count">box_count</option>
+				</field>
+				<field name="fb_like_show_faces" type="radio" class="radio btn-group" default="1" 
+					label="Show Faces" description="Specifies whether to display profile photos below the button (standard layout only). You must not enable this on child-directed sites.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="fb_like_width" type="text" default="" label="Width" description="The width of this plugin, in pixels. The layout you choose affects the minimum and default widths you can use." />
+				<field name="fb_like_action" type="radio" default="like"
+					label="Verb to Display" description="Verb to Display">
+					<option value="like">Like</option>
+					<option value="recommend">Recommend</option>
+				</field>
+				<field name="fb_like_share" type="radio" class="radio btn-group"
+					default="0" label="Share"
+					description="Specifies whether to include a share button beside the Like button. This only works with the XFBML version.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="fb_like_color_scheme" type="list" default="light"
+					label="Color Scheme" description="Color Scheme">
+					<option value="light">Light</option>
+					<option value="dark">Dark</option>
+				</field>
+				<field name="fb_like_container" type="list" default="div"
+					label="Container" description="Choose the tag container for the like button">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="li">LI</option>
+				</field>
+				<field name="fb_like_css" type="text" default="display:inline-block;margin:10px;" 
+					label="CSS style" description="Insert a style for the button Like container" />
+
+				<field type="spacer" />
+				<field name="advanced_fb_share" type="spacer"
+					default="Setting For Facebook Share Button" label="&lt;b&gt;Setting For Facebook Share Button&lt;/b&gt;"
+					description="Setting For Facebook Share Button" />
+				<field name="fb_share_button_style" type="list" default="button_count"
+					label="Style" description="Style of the button to be displayed">
+					<option value="standard">standard</option>
+					<option value="button_count">button_count</option>
+					<option value="box_count">box_count</option>
+					<option value="text">text link</option>
+					<option value="icontext">small icon and text</option>
+					<option value="icon">only icon</option>
+					<option value="custom_icon">custom icon</option>
+				</field>
+				<field name="fb_share_custom_img" type="text" default=""
+					label="Fb share custom icon" description="Insert the path for a custom icon" />
+				<field name="fb_share_button_text" type="text" default="Share"
+					label="Share button text" description="Insert a text in the Share button" />
+				<field name="fb_share_width" type="text" default="" label="Width"
+					description="The width of this plugin, in pixels. The layout you choose affects the minimum and default widths you can use." />
+				<field name="fb_share_container" type="list" default="div"
+					label="Container" description="Choose the tag container for the share button">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="li">LI</option>
+				</field>
+				<field name="fb_share_css" type="text" default="display:inline-block;margin:10px;" 
+					label="CSS style" description="Insert a style for the Share button" />
+
+				<field type="spacer" />
+				<field name="advanced_fb_send" type="spacer"
+					default="Setting For Facebook Send Button" label="&lt;b&gt;Setting For Facebook Send Button&lt;/b&gt;"
+					description="Setting For Facebook Send Button" />
+				<field name="fb_send_color_scheme" type="list" default="light"
+					label="Color Scheme" description="Color Scheme">
+					<option value="light">Light</option>
+					<option value="dark">Dark</option>
+				</field>
+				<field name="fb_send_container" type="list" default="div"
+					label="Container" description="Choose the tag container for the send button">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="li">LI</option>
+				</field>
+				<field name="fb_send_css" type="text" default="display:inline-block;margin:10px;" 
+					label="CSS style" description="Insert a style for the Send button" />
+
+				<field type="spacer" />
+				<field name="advanced_fb_comments" type="spacer"
+					default="Setting For Facebook Comment Box" label="&lt;b&gt;Setting For Facebook Comments Box&lt;/b&gt;"
+					description="Advanced Setting For Facebook Comments Box" />
+				<field name="fb_comments_print" type="radio" class="radio btn-group"
+					default="0" label="Enable Print Comments" description="Enable to print the comments posted">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="enable_notification_comment" type="radio"
+					class="radio btn-group" default="0" label="Enable notifications"
+					description="Enable the notification on the creation of new comment.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="fb_comments_count_enable" type="radio" class="radio btn-group"
+					default="0" label="Enable Post Counter" description="Enable the counter for the comments posted">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="fb_comments_container_count" type="list" default="div"
+					label="Counter Container" description="Choose the tag container for counter">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+				</field>
+				<field name="fb_comments_css_count" type="text" default=""
+					label="CSS style" description="Insert a style for the counter container" />
+
+				<field type="spacer" />
+				<field name="opengraph" type="spacer" default="OpenGraph Options"
+					label="&lt;b&gt;OpenGraph Options&lt;/b&gt;" description="OpenGraph Options." />
+				<field name="enable_opengraph" type="radio" class="radio btn-group"
+					default="0" label="Enable opengraph"
+					description="Add information about the page by opengraph tags.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="opengraph_description" type="list" default="0"
+					label="Article description" description="Object description for the shared link">
+					<option value="0">Use meta tag description</option>
+					<option value="1">Use first paragraph</option>
+					<option value="2">Use first 255 chars</option>
+					<option value="3">Use only intro text</option>
+				</field>
+				<field name="opengraph_defaultimage" type="text" default=""
+					label="Default image path"
+					description="The path of the default image that must be show in the FB link" />
+				<field name="opengraph_onlydefaultimage" type="radio"
+					class="radio btn-group" default="0" label="Use only default image"
+					description="Use only the default image as Facebook post image">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="opengraph_directyoutube" type="radio" class="radio btn-group"
+					default="0" label="Direct Youtube"
+					description="If there is a video from youtube, then it will be shared directly in the facebook post.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field type="spacer" />
+				<field name="@spacer_fb_admin" type="spacer"
+					default="Setting For Facebook Administration" label="&lt;b&gt;Setting For Facebook Administration&lt;/b&gt;"
+					description="Setting For Facebook Administration" />
+				<field name="fb_admin_ids" type="text" default="" size="50"
+					label="Facebook administrator ID"
+					description="Add the facebook IDs of the person enabled to moderate comments. Separate the uids by comma without spaces. This value will be used even in the opengraph options for the FB like button" />
+				<field name="fb_app_id" type="text" default="" size="50"
+					label="Facebook App ID"
+					description="Add the ID of your Facebook application. This value will be used even in the opengraph options for the FB like button and autopublish settings." />
+				<field name="fb_secret_key" type="text" default="" size="50"
+					label="App secret key" description="To autopublish it is necessary the aplication secret key" />
+				<field name="fb_enable_admin" type="radio" class="radio btn-group"
+					default="0" label="Enable Administrators"
+					description="Enable Comments Box Administration. (You must specify at least one administrator ID)">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="fb_enable_autopublish" type="radio" class="radio btn-group"
+					default="0" label="Facebook Autopublish"
+					description="Enable Joomla to publish automatically your articles on Facebook. To enable this function you need to set the App ID and the App Secret Keys, the ID of the page where you want to publish.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="fb_text_old" type="text" default="Update" size="50"
+					label="Text message on update articles"
+					description="The text message in the autopublish post when the content is not new" />
+				<field name="fb_text_new" type="text" default="" size="50"
+					label="Text message on new articles"
+					description="The text message in the autopublish post when the content is new" />
+				<field name="fb_autopublish_image" type="list" default="1"
+					label="Image in Autopublish"
+					description="You can choose to autopublish the first image or no image(auto).">
+					<option value="1">First image</option>
+					<option value="0">No image</option>
+				</field>
+				<field name="fb_extra_params" type="fbextraparams"
+					addfieldpath="/plugins/content/fb_tw_plus1/facebook" label=""
+					description="" />
+
+				<field type="spacer" />
+				<field type="spacer" hr="true" />
+				<field type="spacer" default="Setting For Google Buttons"
+					label="&lt;b&gt;Setting For Google Buttons&lt;/b&gt;" description="Advanced Setting For Google Buttons" />
+				<field name="google_language" type="list" default="en-US"
+					label="Select a language code" description="Set the language for +1 button">
+					<option value="af">Afrikaans</option>
+					<option value="am">Amharic</option>
+					<option value="ar">Arabic</option>
+					<option value="eu">Basque</option>
+					<option value="bn">Bengali</option>
+					<option value="bg">Bulgarian</option>
+					<option value="ca">Catalan</option>
+					<option value="zh-HK">Chinese (Hong Kong)</option>
+					<option value="zh-CN">Chinese (Simplified)</option>
+					<option value="zh-TW">Chinese (Traditional)</option>
+					<option value="hr">Croatian</option>
+					<option value="cs">Czech</option>
+					<option value="da">Danish</option>
+					<option value="nl">Dutch</option>
+					<option value="en-GB">English (UK)</option>
+					<option value="en-US">English (US)</option>
+					<option value="et">Estonian</option>
+					<option value="fil">Filipino</option>
+					<option value="fi">Finnish</option>
+					<option value="fr">French</option>
+					<option value="fr-CA">French (Canadian)</option>
+					<option value="gl">Galician</option>
+					<option value="de">German</option>
+					<option value="el">Greek</option>
+					<option value="gu">Gujarati</option>
+					<option value="iw">Hebrew</option>
+					<option value="hi">Hindi</option>
+					<option value="hu">Hungarian</option>
+					<option value="is">Icelandic</option>
+					<option value="id">Indonesian</option>
+					<option value="it">Italian</option>
+					<option value="ja">Japanese</option>
+					<option value="kn">Kannada</option>
+					<option value="ko">Korean</option>
+					<option value="lv">Latvian</option>
+					<option value="lt">Lithuanian</option>
+					<option value="ms">Malay</option>
+					<option value="ml">Malayalam</option>
+					<option value="mr">Marathi</option>
+					<option value="no">Norwegian</option>
+					<option value="fa">Persian</option>
+					<option value="pl">Polish</option>
+					<option value="pt-BR">Portuguese (Brazil)</option>
+					<option value="pt-PT">Portuguese (Portugal)</option>
+					<option value="ro">Romanian</option>
+					<option value="ru">Russian</option>
+					<option value="sr">Serbian</option>
+					<option value="sk">Slovak</option>
+					<option value="sl">Slovenian</option>
+					<option value="es">Spanish</option>
+					<option value="es-419">Spanish (Latin America)</option>
+					<option value="sw">Swahili</option>
+					<option value="sv">Swedish</option>
+					<option value="ta">Tamil</option>
+					<option value="te">Telugu</option>
+					<option value="th">Thai</option>
+					<option value="tr">Turkish</option>
+					<option value="uk">Ukrainian</option>
+					<option value="ur">Urdu</option>
+					<option value="vi">Vietnamese</option>
+					<option value="zu">Zulu</option>
+				</field>
+				<field name="google_asynchronous" type="radio" class="radio btn-group"
+					default="0" label="Asynchronous"
+					description="Enable Asynchronous load for the script of the Google +1 button.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="google_html5" type="radio" class="radio btn-group"
+					default="0" label="HTML5 version" description="Enable HTML5 version for the Google +1 button.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+
+				<field type="spacer" />
+				<field type="spacer" hr="true" />
+				<field type="spacer" default="Setting For Google Plus One Button"
+					label="&lt;b&gt;Setting For Google Plus One Button&lt;/b&gt;"
+					description="Advanced Setting For Google Plus One Button" />
+				<field name="google_size" type="list" default="medium" label="Style"
+					description="Style of the button to be displayed">
+					<option value="small">Small</option>
+					<option value="medium">Medium</option>
+					<option value="standard">Standard</option>
+					<option value="tall">Tall</option>
+				</field>
+				<field name="google_annotation" type="list" default="bubble"
+					label="Show counter" description="Show counter annotation">
+					<option value="bubble">Bubble</option>
+					<option value="inline">Inline</option>
+					<option value="none">None</option>
+				</field>
+				<field name="google_container" type="list" default="div"
+					label="Container" description="Choose the tag container for the button">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="li">LI</option>
+				</field>
+				<field name="google_css" type="text" default="display:inline-block;margin:10px;" 
+					label="CSS style" description="Insert a style for the Google +1 button container" />
+
+				<field type="spacer" />
+				<field type="spacer" hr="true" />
+				<field type="spacer" default="Setting For Google Share Button"
+					label="&lt;b&gt;Setting For Google Share Button&lt;/b&gt;"
+					description="Advanced Setting For Google Share Button" />
+				<field name="google_share_style" type="list" default="standard" label="Style" description="Style of the button to be displayed">
+					<option value="standard">standard</option>
+					<option value="custom_icon">custom icon</option>
+				</field>
+				<field name="google_share_custom_img" type="text" default=""
+					label="Google custom icon" description="Insert the path for a custom icon" />
+				<field name="google_share_height" type="list" default="20"
+					label="Height" description="Button height">
+					<option value="15">15</option>
+					<option value="20">20</option>
+					<option value="24">24</option>
+					<option value="60">60</option>
+				</field>
+				<field name="google_share_width" type="text" default="" label="Width" description="The maximum width to allocate to the entire share plugin." />
+				<field name="google_share_annotation" type="list" default="bubble"
+					label="Show counter" description="Show counter annotation">
+					<option value="bubble">Bubble</option>
+					<option value="vertical-bubble">Vertical bubble</option>
+					<option value="inline">Inline</option>
+					<option value="none">None</option>
+				</field>
+				<field name="google_share_align" type="list" default="left"
+					label="Alignment" description="Sets the horizontal alignment of the button assets within its frame.">
+					<option value="left">left</option>
+					<option value="right">right</option>
+				</field>
+				<field name="google_share_container" type="list" default="div"
+					label="Container" description="Choose the tag container for the button">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="li">LI</option>
+				</field>
+				<field name="google_share_css" type="text" default="display:inline-block;margin:10px;" 
+					label="CSS style" description="Insert a style for the Google share button container" />
+
+
+				<field type="spacer" />
+				<field type="spacer" hr="true" />
+				<field type="spacer" default="Setting For Twitter Button"
+					label="&lt;b&gt;Setting For Twitter Button&lt;/b&gt;" description="Advanced Setting For Twitter Button" />
+				<field name="twitter_style" type="list" default="standard"
+					label="Style" description="Style of the button to be displayed">
+					<option value="standard">standard</option>
+					<option value="custom_icon">custom icon</option>
+				</field>
+				<field name="twitter_custom_img" type="text" default=""
+					label="Twitter custom icon" description="Insert the path for a custom icon" />
+				<field name="twitter_show_count" type="radio" default="horizontal"
+					label="Show counter" description="Show counter">
+					<option value="vertical">Vertical</option>
+					<option value="horizontal">Horizontal</option>
+					<option value="none">None</option>
+				</field>
+				<field name="twitter_language" type="list" default="en"
+					label="Select a language code" description="Set the language for Twitter button">
+					<option value="ko">Korean</option>
+					<option value="fr">French</option>
+					<option value="ja">Japanese</option>
+					<option value="it">Italian</option>
+					<option value="id">Indonesian</option>
+					<option value="en">English</option>
+					<option value="nl">Dutch</option>
+					<option value="pt">Portuguese</option>
+					<option value="ru">Russian</option>
+					<option value="es">Spanish</option>
+					<option value="de">German</option>
+					<option value="tr">Turkish</option>
+				</field>
+				<field name="twitter_data_via" type="text" default="" 
+					label="Via" description="Insert the screen name of the user to attribute the Tweet to. This tells twitter who was the original tweeter. Make sure you change it to your twitter account!!" />
+				<field name="twitter_data_related" type="text" default=""
+					label="Related" description="Insert the related accounts. This adds recommended users to follow. You are allowed up to two Twitter accounts for users to follow after they share content from your website. These accounts could include your own, or that of a contributor or a partner. The first account is the one that is shared in data-via property. (Make sure you change it to one of your other twitter accounts, or remove it). The correct format to enter data in this variable is twitterusername:Description of the User." />
+				<field name="twitter_hashtags" type="text" default="" label="Hashtags" description="Comma separated hashtags appended to the tweet text" />
+				<field name="twitter_datasize" type="radio" class="radio btn-group" default="medium" 
+					label="Size" description="Set the size of the Twitter button. Default is medium">
+					<option value="medium">Medium</option>
+					<option value="large">Large</option>
+				</field>
+				<field name="twitter_container" type="list" default="div"
+					label="Container" description="Choose the tag container for the button">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="li">LI</option>
+				</field>
+				<field name="twitter_css" type="text" default="display:inline-block;margin:10px;" 
+					label="CSS style" description="Insert a style for the Twitter button container" />
+				<field name="twitter_asynchronous" type="radio" class="radio btn-group"
+					default="0" label="Asynchronous"
+					description="Enable Asynchronous load for the Twitter script.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="twitter_opt_out" type="radio" class="radio btn-group"
+					default="false" label="Opt-out of tailoring"
+					description="Twitter buttons on your site can help us tailor content and suggestions for Twitter users. If you want to opt-out of this feature, set the optional parameter to be true.">
+					<option value="true">Yes</option>
+					<option value="false">No</option>
+				</field>
+
+				<field type="spacer" default="Setting For Twitter App"
+					label="&lt;b&gt;Setting For Twitter App&lt;/b&gt;"
+					description="Advanced Setting For Twitter Autopublish. It is very important to complete the configuration with the right keys." />
+				<field name="twitter_enable_autopublish" type="radio"
+					class="radio btn-group" default="0" label="Twitter Autopublish"
+					description="Enable joomla to publish automatically your articles on Twitter">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="twitter_consumer_key" type="text" default=""
+					size="50" label="Consumer key" description="Consumer key" />
+				<field name="twitter_consumer_secret" type="text" default=""
+					size="50" label="Consumer secret" description="Consumer secret" />
+				<field name="twitter_oauth_token" type="text" default="" size="50"
+					label="Access token" description="Oauth token" />
+				<field name="twitter_oauth_token_secret" type="text" default=""
+					size="50" label="Access token secret" description="Oauth token secret" />
+
+				<field type="spacer" />
+				<field type="spacer" hr="true" />
+				<field type="spacer" default="Setting For LinkedIn Button"
+					label="&lt;b&gt;Setting For LinkedIn Button&lt;/b&gt;" description="Advanced Setting For LinkedIn Button" />
+				<field name="linkedin_style" type="list" default="standard"
+					label="Style" description="Style of the button to be displayed">
+					<option value="standard">standard</option>
+					<option value="custom_icon">custom icon</option>
+				</field>
+				<field name="linkedin_custom_img" type="text" default=""
+					label="Linkedin custom icon" description="Insert the path for a custom icon" />
+				<field name="linkedin_data_counter" type="radio" default="right"
+					label="Counter position"
+					description="Whether or not to show the the share count and where it gets displayed.">
+					<option value="none">None</option>
+					<option value="right">Right</option>
+					<option value="top">Top</option>
+				</field>
+				<field name="linkedin_data_showzero" type="radio" class="radio btn-group"
+					default="0" label="Show zero count"
+					description="Whether to show a zero or a placeholder in the counter if there are no shares.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="linkedin_language" type="list" default="en_US"
+					label="Language" description="Linkedin plugin language">
+					<option value="en_US">English</option>
+					<option value="fr_FR">French</option>
+					<option value="es_ES">Spanish</option>
+					<option value="ru_RU">Russian</option>
+					<option value="de_DE">German</option>
+					<option value="it_IT">Italian</option>
+					<option value="pt_BR">Portuguese</option>
+					<option value="ro_RO">Romanian</option>
+					<option value="tr_TR">Turkish</option>
+					<option value="ja_JP">Japanese</option>
+					<option value="id_ID">Indonesian</option>
+					<option value="ms_MY">Malay</option>
+					<option value="ko_KR">Korean</option>
+					<option value="sv_SE">Swedish</option>
+					<option value="cs_CZ">Czech</option>
+					<option value="nl_NL">Dutch</option>
+					<option value="pl_PL">Polish</option>
+					<option value="no_NO">Norwegian</option>
+					<option value="da_DK">Danish</option>
+				</field>
+				<field name="linkedin_container" type="list" default="div"
+					label="Container" description="Choose the tag container for the button">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="li">LI</option>
+				</field>
+				<field name="linkedin_css" type="text"
+					default="display:inline-block;margin:10px;" label="CSS style"
+					description="Insert a style for the LinkedIn button container" />
+				<field name="linkedin_asynchronous" type="radio" class="radio btn-group"
+					default="0" label="Asynchronous"
+					description="Enable Asynchronous load for the LinkedIn script.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field type="spacer" />
+				<field type="spacer" hr="true" />
+				<field type="spacer" default="Setting For Pinterest Button"
+					label="&lt;b&gt;Setting For Pinterest Button&lt;/b&gt;"
+					description="Advanced Setting For Pinterest Button" />
+				<field name="pinterest_selection" type="radio" class="radio btn-group"
+					default="0" label="Image selection"
+					description="Choose if the user can select the image or it will pick the first content image.">
+					<option value="1">Pin images</option>
+					<option value="0">User selection image</option>
+					<option value="2">User selection image (custom icon)</option>
+				</field>
+				<field name="pinterest_custom_img" type="text" default=""
+					label="Pinterest custom icon" description="Insert the path for a custom icon" />
+				<field name="pinterest_asynchronous" type="radio" class="radio btn-group"
+					default="0" label="Asynchronous"
+					description="Enable Asynchronous load for the Pinterest script.">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<field name="pinterest_counter" type="list" default="horizontal"
+					label="Counter position"
+					description="Whether or not to show the the share count and where it gets displayed.(it works only in pin image mode)">
+					<option value="none">None</option>
+					<option value="horizontal">Horizontal</option>
+					<option value="vertical">Vertical</option>
+				</field>
+				<field name="pinterest_size" type="list" default="small"
+					label="Size" description="The size of the pinterest button.">
+					<option value="small">Small</option>
+					<option value="large">Large</option>
+				</field>
+				<field name="pinterest_color" type="list" default="gray"
+					label="Color" description="The color of the pinterest button.">
+					<option value="gray">Gray</option>
+					<option value="red">Red</option>
+					<option value="white">White</option>
+				</field>
+				<field name="pinterest_language" type="list" default="en"
+					label="Language" description="The language of the pinterest button.">
+					<option value="en">English</option>
+					<option value="ja">Japanese</option>
+				</field>
+				<field name="pinterest_container" type="list" default="div"
+					label="Container"
+					description="Choose the tag container for the Pinterest button (only in user selection mode)">
+					<option value="0">none</option>
+					<option value="div">DIV</option>
+					<option value="p">P</option>
+					<option value="li">LI</option>
+				</field>
+				<field name="pinterest_css" type="text"
+					default="display:inline-block;margin:10px;" label="CSS style"
+					description="Insert a style for the Pinterest button container (only in user selection mode)" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

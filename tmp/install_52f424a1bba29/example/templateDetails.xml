@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="template">
+	<name>example</name>
+	<version>1.0</version>
+	<creationDate>04/28/2010</creationDate>
+	<author>James Yuzwalk</author>
+	<authorEmail>jjy@someplace.com</authorEmail>
+	<authorUrl>http://www.someplace.com</authorUrl>
+	<copyright>2010</copyright>
+	<description>Example Joomla 1.5 Template</description>
+	<files>
+	    <filename>index.html</filename>
+	    <filename>favicon.ico</filename>
+		<filename>index.php</filename>
+		<filename>suckerfish.php</filename>
+		<filename>template_thumbnail.png</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>images/index.html</filename>
+		<filename>images/banner.png</filename>
+		<filename>css/index.html</filename>
+		<filename>css/template.css</filename>	
+	</files>
+	<positions>
+		<position>Banner</position>
+		<position>TopLeft</position>
+		<position>TopRight</position>
+		<position>MainLeft</position>
+		<position>MainRight</position>
+		<position>Footer</position>
+	</positions>
+</install>

@@ -1,0 +1,1 @@
+UPDATE `#__autotweet_channeltypes` SET `auth_url` = 'http://apps.facebook.com/autotweetsfo' WHERE `name` LIKE 'Faceboo%'; 

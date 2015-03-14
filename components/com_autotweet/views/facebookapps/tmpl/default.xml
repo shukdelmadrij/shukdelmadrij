@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_AUTOTWEET_VIEW_FACEBOOKAPP_TITLE" option="COM_AUTOTWEET_VIEW_FACEBOOKAPP_OPTION">
+		<help key="COM_AUTOTWEET_JHELP_MENUS_MENU_ITEM_AUTOTWEET" />
+		<message>
+			<![CDATA[COM_AUTOTWEET_VIEW_FACEBOOKAPP_DESC]]>
+		</message>
+	</layout>
+
+	<!-- Add fields to the parameters object for the layout. -->
+	<fields name="params">
+		<fieldset name="basic" label="COM_AUTOTWEET_VIEW_FACEBOOKAPP_OPTION">
+
+			<field name="app_id" type="text"
+				label="COM_AUTOTWEET_MY_APP_ID_TITLE" description="COM_AUTOTWEET_MY_APP_ID_DESC"/>
+
+			<field name="secret" type="text"
+				label="COM_AUTOTWEET_MY_APP_SECRET_TITLE" description="COM_AUTOTWEET_MY_APP_SECRET_DESC"/>
+
+		</fieldset>
+	</fields>
+</metadata>

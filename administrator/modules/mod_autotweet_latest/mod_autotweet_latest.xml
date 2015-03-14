@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="administrator" method="upgrade">
+	<name>mod_autotweet_latest</name>
+	<creationDate>October 2009</creationDate>
+	
+    <author>Extly.com</author>
+	<authorEmail>support@extly.com</authorEmail>
+	<authorUrl>http://www.extly.com</authorUrl>
+	<copyright>Prieco S.A.</copyright>
+	<license>GNU/GPLv3 www.gnu.org/licenses/gpl-3.0.html</license>	
+	<version>7.5.0</version>
+	
+	<description>MOD_AUTOTWEET_LATEST_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_autotweet_latest">mod_autotweet_latest.php</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.mod_autotweet_latest.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_autotweet_latest.sys.ini</language>
+	</languages>	
+	
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_ADMIN_LATEST" />
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			
+				<field name="mode" type="list" default="1" label="MOD_AUTOTWEET_LATEST_PARAM_MODE_LABEL" description="MOD_AUTOTWEET_LATEST_PARAM_MODE_DESC">
+					<option value="1">MOD_AUTOTWEET_LATEST_PARAM_MODE_OPTION_1</option>
+					<option value="2">MOD_AUTOTWEET_LATEST_PARAM_MODE_OPTION_2</option>
+					<option value="3">MOD_AUTOTWEET_LATEST_PARAM_MODE_OPTION_3</option>
+				</field>
+			
+				<field name="count" type="text" default="5"
+					label="MOD_AUTOTWEET_LATEST_PARAM_ENTRYCOUNT_LABEL" description="MOD_AUTOTWEET_LATEST_PARAM_ENTRYCOUNT_LABEL" />
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field name="moduleclass_sfx" type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field name="cache" type="list" default="0"
+					label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field name="automatic_title" type="radio" class="btn-group" default="0"
+					label="COM_MODULES_FIELD_AUTOMATIC_TITLE_LABEL" description="COM_MODULES_FIELD_AUTOMATIC_TITLE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>					
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
