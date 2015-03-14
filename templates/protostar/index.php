@@ -68,155 +68,139 @@ if ($this->params->get('logoFile')) {
   $logo = '<span class="site-title" title="'. $sitename .'">'. $sitename .'</span>';
 }
 ?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <jdoc:include type="head" />
-  <?php
-  // Use of Google Font
-  if ($this->params->get('googleFont')) {
-  ?>
-    <link href='http://fonts.googleapis.com/css?family=<?php echo $this->params->get('googleFontName');?>' rel='stylesheet' type='text/css' />
-    <style type="text/css">
-      h1,h2,h3,h4,h5,h6,.site-title{
-        font-family: '<?php echo str_replace('+', ' ', $this->params->get('googleFontName'));?>', sans-serif;
-      }
-    </style>
-  <?php
-  }
-  ?>
-  <?php
-  // Template color
-  if ($this->params->get('templateColor'))
-  {
-  ?>
-  <style type="text/css">
-    body.site {
-      border-top: 3px solid <?php echo $this->params->get('templateColor');?>;
-      background-color: <?php echo $this->params->get('templateBackgroundColor');?>
-    }
+  <?php // Use of Google Font
+    if ($this->params->get('googleFont')) { ?>
+      <link href='http://fonts.googleapis.com/css?family=<?php echo $this->params->get('googleFontName');?>' rel='stylesheet' type='text/css' />
+      <style type="text/css">
+        h1,h2,h3,h4,h5,h6,.site-title{
+          font-family: '<?php echo str_replace('+', ' ', $this->params->get('googleFontName'));?>', sans-serif;
+        }
+      </style>
+  <?php } ?>
+  <?php // Template color
+    if ($this->params->get('templateColor')) { ?>
+      <style type="text/css">
+        body.site {
+          border-top: 3px solid <?php echo $this->params->get('templateColor');?>;
+          background-color: <?php echo $this->params->get('templateBackgroundColor');?>
+        }
     
-    a {
-      color: <?php echo $this->params->get('templateColor');?>;
-    }
+        a {
+          color: <?php echo $this->params->get('templateColor');?>;
+        }
     
-    .navbar-inner, 
-    .nav-list > .active > a, 
-    .nav-list > .active > a:hover, 
-    .dropdown-menu li > a:hover, 
-    .dropdown-menu .active > a, 
-    .dropdown-menu .active > a:hover, 
-    .nav-pills > .active > a, 
-    .nav-pills > .active > a:hover, 
-    .btn-primary {
-      background: <?php echo $this->params->get('templateColor');?>;
-    }
+        .navbar-inner, 
+        .nav-list > .active > a, 
+        .nav-list > .active > a:hover, 
+        .dropdown-menu li > a:hover, 
+        .dropdown-menu .active > a, 
+        .dropdown-menu .active > a:hover, 
+        .nav-pills > .active > a, 
+        .nav-pills > .active > a:hover, 
+        .btn-primary {
+          background: <?php echo $this->params->get('templateColor');?>;
+        }
     
-    .navbar-inner {
-      -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
-      -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
-    }
-    
-    .navigation .nav > li {
-      position: relative;
-      float:left !important;
-      background-color:#035325 !important;
-      margin-left: 2px;	
-      border-radius: 5px;
-      margin-top:5px;
-      margin-bottom:5px;
-      font-weight:bold;
-    }
-    
-    .navigation .nav > li a{
-      padding:8px !important;
-      color:#fff;
-    }
-    
-    .navigation {
-      margin-bottom: 10px;
-      display: inline-block;
-      height:auto !important;
-      width:100% !important;
-      background-color:white;
-      color:white;
-      border-radius: 5px;
-    }
-    
-    .breadcrumb {
-      display:none;
-    }
-    
-    .nav {
-      margin-left:auto !important;
-    }
-    
-    .navigation .menu li > a:hover,
-    .navigation .menu li > a:focus,
-    .navigation .menu:hover > a {
-      color: #008932 !important;
-      background-color:#eee;
-      border-radius:5px;
-      border-width:0px;
-    }
-    .navigation .nav-child li {
-      background-color:#008932 !important;
-      border-radius: 0px;	
-    }
-    .navigation .nav-child {
-      background-color:#008932;
-    }
-    .navigation .nav-child:before {
-      border-bottom: 7px solid #008932;
-      border-bottom-color: #008932;
-    }
-    .navigation .nav-child:after {
-      border-bottom:#008932;
-    }
-    .navigation .nav-child li > a:hover,
-    .navigation .nav-child li > a:focus,
-    .navigation .nav-child:hover > a {
-      text-decoration: none;
-      color: #008932;
-      background-color: #eee;
-      background-image: none;
-      border-radius: 0px;	
-    }
+        .navbar-inner {
+          -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
+          -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
+        }
+        
+        .navigation .nav > li {
+          position: relative;
+          float:left !important;
+          background-color:#035325 !important;
+          margin-left: 2px;	
+          border-radius: 5px;
+          margin-top:5px;
+          margin-bottom:5px;
+          font-weight:bold;
+        }
+        
+        .navigation .nav > li a{
+          padding:8px !important;
+          color:#fff;
+        }
+        
+        .navigation {
+          margin-bottom: 10px;
+          display: inline-block;
+          height:auto !important;
+          width:100% !important;
+          background-color:white;
+          color:white;
+          border-radius: 5px;
+        }
+        
+        .breadcrumb {
+          display:none;
+        }
+        
+        .nav {
+          margin-left:auto !important;
+        }
+        
+        .navigation .menu li > a:hover,
+        .navigation .menu li > a:focus,
+        .navigation .menu:hover > a {
+          color: #008932 !important;
+          background-color:#eee;
+          border-radius:5px;
+          border-width:0px;
+        }
+        .navigation .nav-child li {
+          background-color:#008932 !important;
+          border-radius: 0px;	
+        }
+        .navigation .nav-child {
+          background-color:#008932;
+        }
+        .navigation .nav-child:before {
+          border-bottom: 7px solid #008932;
+          border-bottom-color: #008932;
+        }
+        .navigation .nav-child:after {
+          border-bottom:#008932;
+        }
+        .navigation .nav-child li > a:hover,
+        .navigation .nav-child li > a:focus,
+        .navigation .nav-child:hover > a {
+          text-decoration: none;
+          color: #008932;
+          background-color: #eee;
+          background-image: none;
+          border-radius: 0px;	
+        }
 	
-	span#imagenFooter {
-		background-image: url('/images/shuk/rejaconflores.png'); 
-		height: 249px;
-		margin-left: -21px;
-		text-align: center;
-		overflow: visible !important;
-		position: relative;
-		z-index: 10000;
-		display: block;
-		background-position: 50% 50%;
-		background-repeat: repeat-x;
-		
-		width: 982px
-	}
-  </style>
-  
-  <?php
-  }
-  ?>
+      	span#imagenFooter {
+      		background-image: url('/images/shuk/rejaconflores.png'); 
+      		height: 249px;
+      		margin-left: -21px;
+      		text-align: center;
+      		overflow: visible !important;
+      		position: relative;
+      		z-index: 10000;
+      		display: block;
+      		background-position: 50% 50%;
+      		background-repeat: repeat-x;
+      		
+      		width: 982px
+      	}
+      </style>
+  <?php } ?>
   <!--[if lt IE 9]>
     <script src="<?php echo $this->baseurl ?>/media/jui/js/html5.js"></script>
   <![endif]-->
 </head>
 
-<body class="site <?php echo $option
-  . ' view-' . $view
-  . ($layout ? ' layout-' . $layout : ' no-layout')
-  . ($task ? ' task-' . $task : ' no-task')
-  . ($itemid ? ' itemid-' . $itemid : '')
-  . ($params->get('fluidContainer') ? ' fluid' : '');
-?>">
-
+<body class="site <?php echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout') . ($task ? ' task-' . $task : ' no-task') . ($itemid ? ' itemid-' . $itemid : '') . ($params->get('fluidContainer') ? ' fluid' : ''); ?>">
   <!-- Body -->
   <div class="body">
     <div class="container<?php echo ($params->get('fluidContainer') ? '-fluid' : '');?>">
@@ -231,13 +215,16 @@ if ($this->params->get('logoFile')) {
           </div>
         </div>
       </header>
+
       <?php if ($this->countModules('position-1')) : ?>
       <nav class="navigation" role="navigation">
         <jdoc:include type="modules" name="position-1" style="none" />
       </nav>
       <div style="clear:'both';"></div>
       <?php endif; ?>
+
       <jdoc:include type="modules" name="banner" style="xhtml" />
+
       <div class="row-fluid" style="min-height: 500px;">
         <?php if ($this->countModules('position-8')) : ?>
         <!-- Begin Sidebar -->
@@ -264,39 +251,36 @@ if ($this->params->get('logoFile')) {
         </div>
         <?php endif; ?>
       </div>
-      
-	  <script type="text/javascript">
-		console.log($(document).width);
-	  </script>
 	  
-	  <span id="imagenFooter">
+  	  <span id="imagenFooter">
         <img src="/images/shuk/pajaro.png" alt="pajarito" style="width: 100px;margin-top: 112px;margin-left: 25px;" />
         <img src="/images/shuk/planta.png" alt="planta" style="width: 100px;margin-top: 112px;margin-left: 150px;" />
         <a href="http://www.macabi.com.ar" target="_blank"><img src="/images/shuk/logoMacabi.png?id=78" alt="planta" style="width: 300px;margin-top: 112px;margin-left: 100px;" /></a>
       </span>
     </div>
   </div>
+
   <!-- Footer -->
   <footer class="footer" role="contentinfo">
     <div class="container<?php echo ($params->get('fluidContainer') ? '-fluid' : '');?>" style="font-weight:bold;">
       <hr />
       <jdoc:include type="modules" name="footer" style="none" />
-      <!--<p class="pull-right"><a href="#top" id="back-top"><?php //echo JText::_('TPL_PROTOSTAR_BACKTOTOP'); ?></a></p>-->
-	  <p class="pull-right"><a href="#top" id="back-top">Volver arriba</a></p>
+      <p class="pull-right"><a href="#top" id="back-top"><?php echo JText::_('TPL_PROTOSTAR_BACKTOTOP'); ?></a></p>
       <p>&copy; <?php echo $sitename . " - O.H.A. Macabi"; ?> <?php echo date('Y');?></p>
     </div>
-    
   </footer>
+
+  <!-- Google Analytics Code -->
   <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-21997700-4', 'shukdelmadrij.com.ar');
-  ga('send', 'pageview');
+    ga('create', 'UA-21997700-4', 'shukdelmadrij.com.ar');
+    ga('send', 'pageview');
+  </script>
 
-</script>
   <jdoc:include type="modules" name="debug" style="none" />
 </body>
 </html>
