@@ -5219,9 +5219,12 @@ a.badge:focus {
     width:766px !important;
   }
 
-
   img#pajarito, img#planta, img#logoMacabiFooter {
     margin-left: 25px !important;
+  }
+
+  input#mod-search-searchword {
+    width: 135px !important;
   }
 }
 @media (min-width: 1200px) {
