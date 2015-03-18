@@ -4817,6 +4817,18 @@ a.badge:focus {
   .controls-row [class*="span"] + [class*="span"] {
     margin-left: 0;
   }
+  div#imagenFooter {
+    width:100% !important;
+    margin: 0 auto !important;
+  }
+  img#pajarito, img#planta {
+    display: none;
+  }
+  img#logoMacabiFooter {
+    margin-left: 0px !important;
+    width: 90% !important;
+    max-width: 300px;
+  }
 }
 @media (max-width: 480px) {
   .nav-collapse {
@@ -5202,6 +5214,14 @@ a.badge:focus {
   textarea.span1,
   .uneditable-input.span1 {
     width: 28px;
+  }
+  div#imagenFooter {
+    width:766px !important;
+  }
+
+
+  img#pajarito, img#planta, img#logoMacabiFooter {
+    margin-left: 25px !important;
   }
 }
 @media (min-width: 1200px) {
@@ -6687,6 +6707,8 @@ div.moduletable div.search {
   -moz-box-shadow: 0px 0px 6px rgba(0,0,0,0.05);
   -webkit-box-shadow: 0px 0px 6px rgba(0,0,0,0.05);
   box-shadow: 0px 0px 6px rgba(0,0,0,0.05);
+  padding-bottom: 0px;
+  border-bottom: none;
 }
 .well .page-header {
   margin: 0px 0px 5px 0px;

@@ -179,7 +179,7 @@ if ($this->params->get('logoFile')) {
           border-radius: 0px;	
         }
 	
-      	span#imagenFooter {
+      	div#imagenFooter {
       		background-image: url('/images/shuk/rejaconflores.png'); 
       		height: 249px;
       		margin-left: -21px;
@@ -190,9 +190,28 @@ if ($this->params->get('logoFile')) {
       		display: block;
       		background-position: 50% 50%;
       		background-repeat: repeat-x;
-      		
-      		width: 982px
+      		width: 982px;
+          border-radius:4px;
       	}
+
+        div#imagenFooter img {
+          margin-top: 112px;
+        }
+
+        img#pajarito {
+          width: 100px;
+          margin-left: 25px;
+        }
+
+        img#planta {
+          width: 100px;
+          margin-left: 150px;
+        }
+
+        img#logoMacabiFooter {
+          width: 300px;
+          margin-left: 100px;
+        }
       </style>
   <?php } ?>
   <!--[if lt IE 9]>
@@ -251,12 +270,17 @@ if ($this->params->get('logoFile')) {
         </div>
         <?php endif; ?>
       </div>
-	  
-  	  <span id="imagenFooter">
-        <img src="/images/shuk/pajaro.png" alt="pajarito" style="width: 100px;margin-top: 112px;margin-left: 25px;" />
-        <img src="/images/shuk/planta.png" alt="planta" style="width: 100px;margin-top: 112px;margin-left: 150px;" />
-        <a href="http://www.macabi.com.ar" target="_blank"><img src="/images/shuk/logoMacabi.png?id=78" alt="planta" style="width: 300px;margin-top: 112px;margin-left: 100px;" /></a>
-      </span>
+
+      <div id="imagenFooter">
+        <div style="margin: 0 auto;">
+          <img src="/images/shuk/pajaro.png" alt="pajarito" id="pajarito" />
+          <img src="/images/shuk/planta.png" alt="planta" id="planta" />
+          <a href="http://www.macabi.com.ar" target="_blank">
+            <img id ="logoMacabiFooter" src="/images/shuk/logoMacabi.png?id=78" alt="Macabi" />
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -272,13 +296,13 @@ if ($this->params->get('logoFile')) {
 
   <!-- Google Analytics Code -->
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-21997700-4', 'shukdelmadrij.com.ar');
-    ga('send', 'pageview');
+    // ga('create', 'UA-21997700-4', 'shukdelmadrij.com.ar');
+    // ga('send', 'pageview');
   </script>
 
   <jdoc:include type="modules" name="debug" style="none" />
