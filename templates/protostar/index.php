@@ -90,45 +90,45 @@ if ($this->params->get('logoFile')) {
           border-top: 3px solid <?php echo $this->params->get('templateColor');?>;
           background-color: <?php echo $this->params->get('templateBackgroundColor');?>
         }
-    
+
         a {
           color: <?php echo $this->params->get('templateColor');?>;
         }
-    
-        .navbar-inner, 
-        .nav-list > .active > a, 
-        .nav-list > .active > a:hover, 
-        .dropdown-menu li > a:hover, 
-        .dropdown-menu .active > a, 
-        .dropdown-menu .active > a:hover, 
-        .nav-pills > .active > a, 
-        .nav-pills > .active > a:hover, 
+
+        .navbar-inner,
+        .nav-list > .active > a,
+        .nav-list > .active > a:hover,
+        .dropdown-menu li > a:hover,
+        .dropdown-menu .active > a,
+        .dropdown-menu .active > a:hover,
+        .nav-pills > .active > a,
+        .nav-pills > .active > a:hover,
         .btn-primary {
           background: <?php echo $this->params->get('templateColor');?>;
         }
-    
+
         .navbar-inner {
           -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
           -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
           box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
         }
-        
+
         .navigation .nav > li {
           position: relative;
           float:left !important;
           background-color:#035325 !important;
-          margin-left: 2px;	
+          margin-left: 2px;
           border-radius: 5px;
           margin-top:5px;
           margin-bottom:5px;
           font-weight:bold;
         }
-        
+
         .navigation .nav > li a{
           padding:8px !important;
           color:#fff;
         }
-        
+
         .navigation {
           margin-bottom: 10px;
           display: inline-block;
@@ -138,15 +138,15 @@ if ($this->params->get('logoFile')) {
           color:white;
           border-radius: 5px;
         }
-        
+
         .breadcrumb {
           display:none;
         }
-        
+
         .nav {
           margin-left:auto !important;
         }
-        
+
         .navigation .menu li > a:hover,
         .navigation .menu li > a:focus,
         .navigation .menu:hover > a {
@@ -157,7 +157,7 @@ if ($this->params->get('logoFile')) {
         }
         .navigation .nav-child li {
           background-color:#008932 !important;
-          border-radius: 0px;	
+          border-radius: 0px;
         }
         .navigation .nav-child {
           background-color:#008932;
@@ -176,11 +176,11 @@ if ($this->params->get('logoFile')) {
           color: #008932;
           background-color: #eee;
           background-image: none;
-          border-radius: 0px;	
+          border-radius: 0px;
         }
-	
+
       	div#imagenFooter {
-      		background-image: url('/images/shuk/rejaconflores.png'); 
+      		background-image: url('/images/shuk/rejaconflores.png');
       		height: 249px;
       		margin-left: -21px;
       		text-align: center;
@@ -217,6 +217,16 @@ if ($this->params->get('logoFile')) {
   <!--[if lt IE 9]>
     <script src="<?php echo $this->baseurl ?>/media/jui/js/html5.js"></script>
   <![endif]-->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-21997700-4', 'auto');
+    ga('send', 'pageview');
+
+  </script>
 </head>
 
 <body class="site <?php echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout') . ($task ? ' task-' . $task : ' no-task') . ($itemid ? ' itemid-' . $itemid : '') . ($params->get('fluidContainer') ? ' fluid' : ''); ?>">
