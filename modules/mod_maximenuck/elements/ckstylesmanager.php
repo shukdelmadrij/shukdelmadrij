@@ -49,7 +49,7 @@ class JFormFieldCkstylesmanager extends JFormField {
 			return '';
 		}
 		// $test = $form->getInput('maximenu_colbgcolor333', 'testt'); // fonctionne
-		$this->createFields($form, $identifier, $this->name);
+		$this->createFields($form, $identifier, $this->id);
 
 
 
@@ -60,8 +60,8 @@ class JFormFieldCkstylesmanager extends JFormField {
 		JHTML::_('script', $path . 'ckstylesmanager.js');
 		JHTML::_('stylesheet', $path . 'ckstylesmanager.css');
 
-		$html = '<input name="' . $this->name . '" id="' . $this->name . '" type="hidden" value="' . $this->value . '" />'
-				. '<input name="' . $this->name . '_button" id="' . $this->name . '_button" class="ckstylesmanager_button" type="button" value="' . JText::_('MOD_MAXIMENUCK_CKSTYLESEDIT_' . strtoupper($identifier)) . '" onclick="javascript:loadStylesCK($(\'ckpopup_' . $identifier . '\'),$(\'' . $this->name . '\'));"/>'
+		$html = '<input name="' . $this->name . '" id="' . $this->id . '" type="hidden" value="' . $this->value . '" />'
+				. '<input name="' . $this->name . '_button" id="' . $this->id . '_button" class="ckstylesmanager_button" type="button" value="' . JText::_('MOD_MAXIMENUCK_CKSTYLESEDIT_' . strtoupper($identifier)) . '" onclick="javascript:loadStylesCK($(\'ckpopup_' . $identifier . '\'),$(\'' . $this->id . '\'));"/>'
 		//.'<input name="ckaddfromfolder" id="ckaddfromfolder" type="button" value="Import from a folder" onclick="javascript:addfromfolderck();"/>'
 		//.'<input name="ckstoreslide" id="ckstoreslide" type="button" value="Save" onclick="javascript:storeslideck();"/>'
 		;

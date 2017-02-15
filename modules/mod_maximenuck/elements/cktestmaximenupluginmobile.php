@@ -22,15 +22,15 @@ class JFormFieldCktestmaximenupluginmobile extends JFormField {
         $class = $this->element['class'] ? (string) $this->element['class'] : '';
 
         $style = $this->element['style'];
-        $styles = '';
-        if ($style == 'title')
-            $styles = ' style="display:block;background:#666;padding:5px;color:#eee;min-width:300px;text-transform:uppercase;font-size:14px;"';
-        if ($style == 'link')
-            $styles = ' style="display:block;background:#efefef;padding:5px;color:#000;min-width:300px;line-height:25px;"';
+        // $styles = '';
+        // if ($style == 'title')
+            // $styles = ' style="display:block;background:#666;padding:5px;color:#eee;min-width:300px;text-transform:uppercase;font-size:14px;"';
+        // if ($style == 'link')
+            // $styles = ' style="display:block;background:#efefef;padding:5px;color:#000;min-width:300px;line-height:25px;"';
 
-        $html[] = '<span class="spacer">';
-        $html[] = '<span class="before"></span>';
-        $html[] = '<span class="' . $class . '">';
+        $html[] = '<div class="maximenuckchecking">';
+        // $html[] = '<span class="before"></span>';
+        // $html[] = '<span class="' . $class . '">';
         if ((string) $this->element['hr'] == 'true') {
             $html[] = '<hr class="' . $class . '" />';
         } else {
@@ -49,7 +49,7 @@ class JFormFieldCktestmaximenupluginmobile extends JFormField {
             $class = $this->required == true ? $class . ' required' : $class;
 
             // Add the opening label tag and main attributes attributes.
-            $label .= '<label id="' . $this->id . '-lbl" class="' . $class . '"';
+            // $label .= '<label id="' . $this->id . '-lbl" class="' . $class . '"';
 
             // If a description is specified, use it to build a tooltip.
             if (!empty($this->description)) {
@@ -58,14 +58,15 @@ class JFormFieldCktestmaximenupluginmobile extends JFormField {
             }
 
             // Add the label text and closing tag.
-            $label .= $styles . '>';
+            // $label .= $styles . '>';
             $label .= $icon ? '<img src="' . $this->getPathToImages() . '/images/' . $icon . '" style="margin-right:5px;" />' : '';
-            $label .= $text . '</label>';
+            $label .= $text;
+			// $label .= '</label>';
             $html[] = $label;
         }
-        $html[] = '</span>';
-        $html[] = '<span class="after"></span>';
-        $html[] = '</span>';
+        // $html[] = '</span>';
+        // $html[] = '<span class="after"></span>';
+        $html[] = '</div>';
         return implode('', $html);
     }
 
@@ -86,7 +87,9 @@ class JFormFieldCktestmaximenupluginmobile extends JFormField {
                 && JPluginHelper::isEnabled('system',$component)) {
             $this->element['icon'] = 'accept.png';
             return JText::_('MOD_MAXIMENUCK_SPACER_' . strtoupper($component) . '_PATCH_INSTALLED');
-        }
+        } else {
+			$this->element['icon'] = 'cross.png';
+		}
         return false;
     }
 }

@@ -39,7 +39,8 @@ class JFormFieldCkspacer extends JFormField {
             $text = $this->translateLabel ? JText::_($text) : $text;
 			
 			// Test to see if the patch is installed
-			$testpatch = $this->element['testpatch'] ? $this->testPatch($this->element['testpatch']) : null;
+			$testprocess = $this->element['testprocess'] ? $this->element['testprocess'] : '';
+			$testpatch = $this->element['testpatch'] ? $this->testPatch($this->element['testpatch'], $testprocess) : null;
 			$text = $testpatch ? $testpatch : $text;
 
 			// set the icon
@@ -82,10 +83,25 @@ class JFormFieldCkspacer extends JFormField {
         return $this->getLabel();
     }
 	
-	protected function testPatch($component) {
-		if (JFile::exists(JPATH_ROOT.'/modules/mod_maximenuck/helper_'.$component.'.php')) {
-			$this->element['icon'] = 'accept.png';
-			return JText::_('MOD_MAXIMENUCK_SPACER_'.strtoupper($component).'_PATCH_INSTALLED');
+	protected function testPatch($component, $testprocess='') {
+		$imgpath = JUri::root(true) . '/modules/mod_maximenuck/elements/images/';
+
+		if ($testprocess == 'plugin') {
+			if ( file_exists(JPATH_ROOT . '/plugins/system/maximenuck_'.$component.'/maximenuck_'.$component.'.php') ) {
+				require_once(JPATH_ROOT . '/plugins/system/maximenuck_'.$component.'/maximenuck_'.$component.'.php');
+				$this->element['icon'] = 'accept.png';
+				// $text = JText::_('MOD_MAXIMENUCK_SPACER_'.strtoupper($component).'_PATCH_INSTALLED');
+				$text = JText::sprintf( 'MOD_MAXIMENUCK_SPACER_PATCH_INSTALLED', ucfirst($component) );
+				if (! JPluginHelper::isEnabled('system', 'maximenuck_'.$component.'') ) {
+					$text .= '<img src="' . $imgpath . 'error.png"  />' . '<a href="index.php?option=com_plugins&filter_folder=system&filter_search=maximenu" class="modal" rel="{handler: \'iframe\', size: {x: 900, y: 550}}">' . JText::_('MOD_MAXIMENUCK_ACTIVATE_PLUGIN') . '</a>';
+				}
+				return $text;
+			}
+		} else {
+			if (JFile::exists(JPATH_ROOT.'/modules/mod_maximenuck/helper_'.$component.'.php')) {
+				$this->element['icon'] = 'accept.png';
+				return JText::_('MOD_MAXIMENUCK_SPACER_'.strtoupper($component).'_PATCH_INSTALLED');
+			}
 		}
 		return false;
 	}

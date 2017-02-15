@@ -9,30 +9,23 @@
 defined('_JEXEC') or die('Restricted access');
 //$tmpitem = reset($items);
 //$columnstylesbegin = isset($tmpitem->columnwidth) ? ' style="width:' . $tmpitem->columnwidth . 'px;float:left;"' : '';
-if ($params->get('style', 'moomenu') == 'clickclose') {
-	$closebutton = '<span class="maxiclose">' . JText::_('MAXICLOSE') . '</span>';
-} else {
-	$closebutton = '';
-}
+$close = '<span class="maxiclose">' . JText::_('MAXICLOSE') . '</span>';
+$orientation_class = ( $params->get('orientation', 'horizontal') == 'vertical' ) ? 'maximenuckv' : 'maximenuckh';
 $maximenufixedclass = ($params->get('menuposition', '0') == 'bottomfixed') ? ' maximenufixed' : '';
 $start = (int) $params->get('startLevel');
 $direction = $langdirection == 'rtl' ? 'right' : 'left';
 ?>
 <!-- debut Maximenu CK, par cedric keiflin -->
-<?php if ($params->get('orientation', '0') == 1) { ?>
-	<div class="maximenuckv<?php echo $maximenufixedclass ?>" id="<?php echo $params->get('menuid', 'maximenuck'); ?>" style="z-index:<?php echo $params->get('zindexlevel', '10'); ?>;">
-	<?php } else { ?>
-	    <div class="maximenuckh<?php echo $maximenufixedclass ?>" id="<?php echo $params->get('menuid', 'maximenuck'); ?>" style="z-index:<?php echo $params->get('zindexlevel', '10'); ?>;">
-		<?php } ?>
+	<div class="<?php echo $orientation_class . ' ' . $langdirection ?><?php echo $maximenufixedclass ?>" id="<?php echo $params->get('menuid', 'maximenuck'); ?>" style="z-index:<?php echo $params->get('zindexlevel', '10'); ?>;">
         <div class="maxiroundedleft"></div>
         <div class="maxiroundedcenter">
-            <ul class="<?php echo $params->get('moduleclass_sfx'); ?> maximenuck" style="<?php echo $menubgcolor; ?>">
+            <ul class="<?php echo $params->get('moduleclass_sfx'); ?> maximenuck">
 				<?php
 				if ($logoimage) {
 					$logoheight = $logoheight ? ' height="' . $logoheight . '"' : '';
 					$logowidth = $logowidth ? ' width="' . $logowidth . '"' : '';
-					$logofloat = ($params->get('orientation', '0') == 1) ? '' :  'float: '.$params->get('logoposition','left').';';
-					$styles = 'style="' .$logofloat . 'margin: '.$params->get('logomargintop','0').'px '.$params->get('logomarginright','0').'px '.$params->get('logomarginbottom','0').'px '.$params->get('logomarginleft','0').'px' . '"';
+					$logofloat = ($params->get('orientation', 'horizontal') == 'vertical') ? '' : 'float: ' . $params->get('logoposition', 'left') . ';';
+					$styles = 'style="' . $logofloat . 'margin: '.$params->get('logomargintop','0').'px '.$params->get('logomarginright','0').'px '.$params->get('logomarginbottom','0').'px '.$params->get('logomarginleft','0').'px' . '"';
 					$logolinkstart = $logolink  ? '<a href="'. JRoute::_($logolink).'" style="margin-bottom: 0 !important;margin-left: 0 !important;margin-right: 0 !important;margin-top: 0 !important;padding-bottom: 0 !important;padding-left: 0 !important;padding-right: 0 !important;padding-top: 0 !important;background: none !important;">' : '';
 					$logolinkend = $logolink  ? '</a>' : '';
 					?>
@@ -40,6 +33,7 @@ $direction = $langdirection == 'rtl' ? 'right' : 'left';
 						<?php echo $logolinkstart ?><img src="<?php echo $logoimage ?>" alt="<?php echo $params->get('logoalt','') ?>" <?php echo $logowidth.$logoheight.$styles ?> /><?php echo $logolinkend ?>
 					</li>
 				<?php } ?>
+				<?php require dirname(__FILE__) . '/_mobile.php'; ?>
 				<?php
 				$zindex = 12000;
 				$tmpitems = array();
@@ -47,8 +41,9 @@ $direction = $langdirection == 'rtl' ? 'right' : 'left';
 				$tmpitems['main'] = '';
 
 				foreach ($items as $i => &$item) {
+					$item->mobile_data = isset($item->mobile_data) ? $item->mobile_data : '';
 					$itemlevel = ($start > 1) ? $item->level - $start + 1 : $item->level;
-					$close = ($itemlevel > 1) ? '' : $closebutton;
+					$close = ($itemlevel > 1) ? '' : ( ($params->get('behavior', 'mouseover') == 'clickclose' || stristr($item->liclass, 'clickclose') != false) ? $close : '' );
 					$indexer = $itemlevel == 1 ? 'main' : 'sub';
 					$stopdropdown = $params->get('stopdropdownlevel', '0');
 					$stopdropdownclass = ($stopdropdown != '0' && $item->level >= $stopdropdown) ? ' nodropdown' : '';
@@ -60,7 +55,7 @@ $direction = $langdirection == 'rtl' ? 'right' : 'left';
 						$tmpitems[$indexer] .= '</ul><div class="clr"></div></div>' . $createnewrow . '<div class="maximenuck2" ' . $columnstyles . '><ul class="maximenuck2">';
 					}
 					if (isset($item->content) AND $item->content) {
-						$tmpitems[$indexer] .= '<li data-level="' . $itemlevel . '" class="maximenuck maximenuckmodule' . $stopdropdownclass . $item->classe . ' level' . $itemlevel . ' ' . $item->liclass . '">' . $item->content;
+						$tmpitems[$indexer] .= '<li data-level="' . $itemlevel . '" class="maximenuck maximenuckmodule' . $stopdropdownclass . $item->classe . ' level' . $itemlevel . ' ' . $item->liclass . '" ' . $item->mobile_data . '>' . $item->content;
 						$item->ftitle = '';
 					}
 
@@ -73,92 +68,34 @@ $direction = $langdirection == 'rtl' ? 'right' : 'left';
 						$opentag = (isset($item->tagcoltitle) AND $item->tagcoltitle != 'none') ? '<' . $item->tagcoltitle . $classcoltitle . '>' : '';
 						$closetag = (isset($item->tagcoltitle) AND $item->tagcoltitle != 'none') ? '</' . $item->tagcoltitle . '>' : '';
 
-						// manage image
-						if ($item->menu_image) {
-							// manage image rollover
-							$menu_image_split = explode('.', $item->menu_image);
-							$imagerollover = '';
-							if (isset($menu_image_split[1])) {
-								// manage active image
-								if (isset($item->active) AND $item->active) {
-									$menu_image_active = $menu_image_split[0] . $params->get('imageactiveprefix', '_active') . '.' . $menu_image_split[1];
-									if (JFile::exists(JPATH_ROOT . '/' . $menu_image_active)) {
-										$item->menu_image = $menu_image_active;
-									}
-								}
-								// manage hover image
-								$menu_image_hover = $menu_image_split[0] . $params->get('imagerollprefix', '_hover') . '.' . $menu_image_split[1];
-								if (isset($item->active) AND $item->active AND JFile::exists(JPATH_ROOT . '/' . $menu_image_split[0] . $params->get('imageactiveprefix', '_active') . $params->get('imagerollprefix', '_hover') . '.' . $menu_image_split[1])) {
-									$imagerollover = ' onmouseover="javascript:this.src=\'' . JURI::base(true) . '/' . $menu_image_split[0] . $params->get('imageactiveprefix', '_active') . $params->get('imagerollprefix', '_hover') . '.' . $menu_image_split[1] . '\'" onmouseout="javascript:this.src=\'' . JURI::base(true) . '/' . $item->menu_image . '\'"';
-								} else if (JFile::exists(JPATH_ROOT . '/' . $menu_image_hover)) {
-									$imagerollover = ' onmouseover="javascript:this.src=\'' . JURI::base(true) . '/' . $menu_image_hover . '\'" onmouseout="javascript:this.src=\'' . JURI::base(true) . '/' . $item->menu_image . '\'"';
-								}
-							}
+						require dirname(__FILE__) . '/_image.php';
 
-							$imagesalign = ($item->params->get('maximenu_images_align', 'moduledefault') != 'moduledefault') ? $item->params->get('maximenu_images_align', 'top') : $params->get('menu_images_align', 'top');
-							if ($item->params->get('menu_text', 1) AND !$params->get('imageonly', '0')) {
-								switch ($imagesalign) :
-									default:
-									case 'default':
-										$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->ftitle . '" align="left"' . $imagerollover . '/><span class="titreck">' . $item->ftitle . $description . '</span> ';
-										break;
-									case 'bottom':
-										$linktype = '<span class="titreck">' . $item->ftitle . $description . '</span><img src="' . $item->menu_image . '" alt="' . $item->ftitle . '" style="display: block; margin: 0 auto;"' . $imagerollover . ' /> ';
-										break;
-									case 'top':
-										$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->ftitle . '" style="display: block; margin: 0 auto;"' . $imagerollover . ' /><span class="titreck">' . $item->ftitle . $description . '</span> ';
-										break;
-									case 'rightbottom':
-										$linktype = '<span class="titreck">' . $item->ftitle . $description . '</span><img src="' . $item->menu_image . '" alt="' . $item->ftitle . '" align="top"' . $imagerollover . '/> ';
-										break;
-									case 'rightmiddle':
-										$linktype = '<span class="titreck">' . $item->ftitle . $description . '</span><img src="' . $item->menu_image . '" alt="' . $item->ftitle . '" align="middle"' . $imagerollover . '/> ';
-										break;
-									case 'righttop':
-										$linktype = '<span class="titreck">' . $item->ftitle . $description . '</span><img src="' . $item->menu_image . '" alt="' . $item->ftitle . '" align="bottom"' . $imagerollover . '/> ';
-										break;
-									case 'leftbottom':
-										$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->ftitle . '" align="top"' . $imagerollover . '/><span class="titreck">' . $item->ftitle . $description . '</span> ';
-										break;
-									case 'leftmiddle':
-										$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->ftitle . '" align="middle"' . $imagerollover . '/><span class="titreck">' . $item->ftitle . $description . '</span> ';
-										break;
-									case 'lefttop':
-										$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->ftitle . '" align="bottom"' . $imagerollover . '/><span class="titreck">' . $item->ftitle . $description . '</span> ';
-										break;
-								endswitch;
-							} else {
-								$linktype = '<img src="' . $item->menu_image . '" alt="' . $item->ftitle . '"' . $imagerollover . '/>';
-							}
-						} else {
-							$linktype = '<span class="titreck">' . $item->ftitle . $description . '</span>';
-						}
-
-						$tmpitems[$indexer] .= '<li data-level="' . $itemlevel . '" class="maximenuck' . $stopdropdownclass . $item->classe . ' level' . $itemlevel . ' ' . $item->liclass . '" style="z-index : ' . $zindex . ';">';
+						// echo '<li data-level="' . $itemlevel . '" class="maximenuck' . $stopdropdownclass . $item->classe . ' level' . $itemlevel . ' ' . $item->liclass . '" style="z-index : ' . $zindex . ';" ' . $item->mobile_data . '>';
+						$tmpitems[$indexer] .= '<li data-level="' . $itemlevel . '" class="maximenuck' . $stopdropdownclass . $item->classe . ' level' . $itemlevel . ' ' . $item->liclass . '" style="z-index : ' . $zindex . ';" ' . $item->mobile_data . '>';
 						switch ($item->type) :
 							default:
-								$tmpitems[$indexer] .= $opentag . '<a class="maximenuck ' . $item->anchor_css . '" href="' . $item->flink . '"' . $title . $item->rel . '>' . $linktype . '</a>' . $closetag;
+								$tmpitems[$indexer] .= $opentag . '<a' . $linkrollover . ' class="maximenuck ' . $item->anchor_css . '" href="' . $item->flink . '"' . $title . $item->rel . '>' . $linktype . '</a>' . $closetag;
 								break;
 							case 'separator':
-								$tmpitems[$indexer] .= $opentag . '<span class="separator ' . $item->anchor_css . '">' . $linktype . '</span>' . $closetag;
+								$tmpitems[$indexer] .= $opentag . '<span' . $linkrollover . ' class="separator ' . $item->anchor_css . '">' . $linktype . '</span>' . $closetag;
 								break;
 							case 'heading':
-								$tmpitems[$indexer] .= $opentag . '<span class="nav-header ' . $item->anchor_css . '">' . $linktype . '</span>' . $closetag;
+								$tmpitems[$indexer] .= $opentag . '<span' . $linkrollover . ' class="nav-header ' . $item->anchor_css . '">' . $linktype . '</span>' . $closetag;
 								break;
 							case 'url':
 							case 'component':
 								switch ($item->browserNav) :
 									default:
 									case 0:
-										$tmpitems[$indexer] .= $opentag . '<a class="maximenuck ' . $item->anchor_css . '" href="' . $item->flink . '"' . $title . $item->rel . '>' . $linktype . '</a>' . $closetag;
+										$tmpitems[$indexer] .= $opentag . '<a' . $linkrollover . ' class="maximenuck ' . $item->anchor_css . '" href="' . $item->flink . '"' . $title . $item->rel . '>' . $linktype . '</a>' . $closetag;
 										break;
 									case 1:
 										// _blank
-										$tmpitems[$indexer] .= $opentag . '<a class="maximenuck ' . $item->anchor_css . '" href="' . $item->flink . '" target="_blank" ' . $title . $item->rel . '>' . $linktype . '</a>' . $closetag;
+										$tmpitems[$indexer] .= $opentag . '<a' . $linkrollover . ' class="maximenuck ' . $item->anchor_css . '" href="' . $item->flink . '" target="_blank" ' . $title . $item->rel . '>' . $linktype . '</a>' . $closetag;
 										break;
 									case 2:
 										// window.open
-										$tmpitems[$indexer] .= $opentag . '<a class="maximenuck ' . $item->anchor_css . '" href="' . $item->flink . '" onclick="window.open(this.href,\'targetWindow\',\'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes\');return false;" ' . $title . $item->rel . '>' . $linktype . '</a>' . $closetag;
+										$tmpitems[$indexer] .= $opentag . '<a' . $linkrollover . ' class="maximenuck ' . $item->anchor_css . '" href="' . $item->flink . '" onclick="window.open(this.href,\'targetWindow\',\'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes\');return false;" ' . $title . $item->rel . '>' . $linktype . '</a>' . $closetag;
 										break;
 								endswitch;
 								break;
@@ -169,23 +106,27 @@ $direction = $langdirection == 'rtl' ? 'right' : 'left';
 						// set the styles for the submenus container
 						if (isset($item->submenuswidth) || $item->leftmargin || $item->topmargin || $item->colbgcolor || isset($item->submenucontainerheight)) {
 							$item->styles = "style=\"";
+							$item->innerstyles = "style=\"";
+							$item->innerstyles .= "width: inherit;";
 							if ($item->leftmargin)
 								$item->styles .= "margin-".$direction.":" . modMaximenuckHelper::testUnit($item->leftmargin) . ";";
 							if ($item->topmargin)
 								$item->styles .= "margin-top:" . modMaximenuckHelper::testUnit($item->topmargin) . ";";
 							if (isset($item->submenuswidth))
-								$item->styles .= "width:" . modMaximenuckHelper::testUnit($item->submenuswidth) . ";";
+								// $item->innerstyles .= "width:" . modMaximenuckHelper::testUnit($item->submenuswidth) . ";";
 							if (isset($item->colbgcolor) && $item->colbgcolor)
 								$item->styles .= "background:" . $item->colbgcolor . ";";
 							if (isset($item->submenucontainerheight) && $item->submenucontainerheight)
-								$item->styles .= "height:" . modMaximenuckHelper::testUnit($item->submenucontainerheight) . ";";
+								$item->innerstyles .= "height:" . modMaximenuckHelper::testUnit($item->submenucontainerheight) . ";";
 							$item->styles .= "\"";
+							$item->innerstyles .= "\"";
 						} else {
 							$item->styles = "";
+							$item->innerstyles = "";
 						}
 						$itemlevel == 1 ? $tmpitems['main'] .=  "\n\t\t</li>" : '';
 
-						$tmpitems['sub'] .= "\n\t<div class=\"floatck submenuck" . $item->id . "\" " . $item->styles . ">" . $close . "<div class=\"maxidrop-main\"><div class=\"maximenuck2 first \" " . $nextcolumnstyles . ">\n\t<ul class=\"maximenuck2\">";
+						$tmpitems['sub'] .= "\n\t<div class=\"floatck submenuck" . $item->id . "\" " . $item->styles . ">" . $close . "<div class=\"maxidrop-main\" " . $item->innerstyles . "><div class=\"maximenuck2 first \" " . $nextcolumnstyles . ">\n\t<ul class=\"maximenuck2\">";
 						// if (isset($item->coltitle))
 						// echo $item->coltitle;
 					}

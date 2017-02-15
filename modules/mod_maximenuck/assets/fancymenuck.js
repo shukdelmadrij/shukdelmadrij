@@ -27,10 +27,10 @@
 			fancymaximenuInit();
 
 			function fancymaximenuInit() {
-				if ($('li.active', maximenuObj).length) {
-					maximenuObj.currentItem = $('li.active', maximenuObj);
+				if ($('li.active.level1', maximenuObj).length) {
+					maximenuObj.currentItem = $('li.active.level1', maximenuObj);
 				} else {
-					maximenuObj.currentItem = $('li.hoverbgactive', maximenuObj);
+					maximenuObj.currentItem = $('li.hoverbgactive.level1', maximenuObj);
 				}
 
 				if (!maximenuObj.currentItem.length) {
@@ -56,7 +56,7 @@
 				$('ul.maximenuck', maximenuObj).append('<li class="maxiFancybackground"><div class="maxiFancycenter"><div class="maxiFancyleft"><div class="maxiFancyright"></div></div></div></li>');
 				fancyItem = $('.maxiFancybackground', maximenuObj);
 
-				if (maximenuObj.currentItem)
+				if (maximenuObj.currentItem.length)
 					setCurrent(maximenuObj.currentItem);
 
 				$('li.level1', maximenuObj).each(function(i, el) {
@@ -75,13 +75,15 @@
 			}
 
 			function moveFancyck(toEl) {
-				$('.maxiFancybackground', maximenuObj).stop(false, false).animate({left: toEl.position().left, width: toEl.outerWidth()}, {duration: fancyDuree, easing: fancyTransition});
+				var toEl_left = toEl.position().left + parseInt(toEl.css('marginLeft'));
+				var toEl_width = toEl.outerWidth();
+				$('.maxiFancybackground', maximenuObj).stop(false, false).animate({left: toEl_left, width: toEl_width}, {duration: fancyDuree, easing: fancyTransition});
 			}
 
 			function setCurrent(el) {
 				el = $(el);
 				//Retrieve the selected item position and width
-				var default_left = Math.round(el.position().left);
+				var default_left = Math.round(el.position().left) + parseInt(el.css('marginLeft'));
 				var default_width = el.outerWidth();
 
 				//Set the floating bar position and width

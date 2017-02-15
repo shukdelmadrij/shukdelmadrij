@@ -45,11 +45,12 @@ class JFormFieldCktext extends JFormField
 		$readonly = ((string) $this->element['readonly'] == 'true') ? ' readonly="readonly"' : '';
 		$disabled = ((string) $this->element['disabled'] == 'true') ? ' disabled="disabled"' : '';
         $defautlwidth = $suffix ? '128px' : '150px';
-        $styles = ' style="width:'.$defautlwidth.';'.$this->element['styles'].'"';
+        $styles = ( version_compare(JVERSION, '3.0.0') > 0 ) ? ' style="float:none;display:inline-block;width:'.$defautlwidth.';'.$this->element['styles'].'"' : ' style="float:none;display:inline-block;border-radius:3px;padding:1px;width:'.$defautlwidth.';'.$this->element['styles'].'"';
 
 		// Initialize JavaScript field attributes.
 		$onchange = $this->element['onchange'] ? ' onchange="' . (string) $this->element['onchange'] . '"' : '';
-        $html = $icon ? '<div style="display:inline-block;vertical-align:top;margin-top:4px;width:20px;"><img src="' . $this->getPathToElements() . '/images/' . $icon . '" style="margin-right:5px;" /></div>' : '<div style="display:inline-block;width:20px;"></div>';
+		$margintop = ( version_compare(JVERSION, '3.0.0') > 0 ) ? 'margin-top:4px;' : 'margin-top:1px;';
+        $html = $icon ? '<div style="display:inline-block;vertical-align:top;'.$margintop.'width:20px;"><img src="' . $this->getPathToElements() . '/images/' . $icon . '" style="margin-right:5px;" /></div>' : '<div style="display:inline-block;width:20px;"></div>';
         $html .= '<input type="text" name="' . $this->name . '" id="' . $this->id . '"' . ' value="'
 			. htmlspecialchars($this->value, ENT_COMPAT, 'UTF-8') . '"' . $class . $size . $disabled . $readonly . $onchange . $maxLength . $styles . '/>';
         if ($suffix)

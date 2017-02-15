@@ -12,7 +12,7 @@ jimport('joomla.filesystem.file');
 if (JFolder::exists(JPATH_ROOT . '/administrator/components/com_virtuemart')) {
     if (!class_exists('VmConfig')) {
 		if (JFile::exists(JPATH_ROOT . '/administrator/components/com_virtuemart/helpers/config.php')) 
-			require(JPATH_ROOT . DS . 'administrator/components/com_virtuemart/helpers/config.php');
+			require(JPATH_ROOT . '/administrator/components/com_virtuemart/helpers/config.php');
 	}
     if (!class_exists('ShopFunctions')) {
         if (JFile::exists(JPATH_VM_ADMINISTRATOR . '/helpers/shopfunctions.php')) 
@@ -44,6 +44,7 @@ class JFormFieldCkvmcategory extends JFormFieldCklist {
 
             return $options;
         }
+		VmConfig::loadConfig();
         $categorylist = ShopFunctions::categoryListTree();
         $categorylist = trim($categorylist, '</option>');
         $categorylist = explode("</option><option", $categorylist);
